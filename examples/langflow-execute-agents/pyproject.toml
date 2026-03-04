@@ -1,0 +1,9 @@
+[project]
+name = "langflow-execute-agents"
+version = "0.1.0"
+description = "Langflow Execute Agents for GL AIP Cookbook"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "glaip-sdk>=0.0.13",
+]

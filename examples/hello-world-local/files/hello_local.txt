@@ -1,0 +1,2 @@
+Hello from a local text file.
+This file is used by the LocalTextFileTool example.

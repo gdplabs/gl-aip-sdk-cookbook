@@ -1,0 +1,8 @@
+[project]
+name = "agent-export-import"
+version = "0.1.0"
+description = "GLAIP Agent Export/Import Mechanism Demo"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "glaip-sdk>=0.0.13",
+]

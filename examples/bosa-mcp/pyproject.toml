@@ -1,0 +1,21 @@
+[project]
+name = "bosa-mcp"
+version = "0.1.0"
+description = "BOSA MCP integration example demonstrating authentication, GitHub integration, and MCP tool execution"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    {name = "Samuel Lusandi", email = "samuel.lusandi@gdplabs.id"},
+]
+keywords = ["bosa", "mcp", "github", "integration", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "bosa-connectors-binary>=0.3.0",
+    "gllm-tools-binary>=0.1.3",
+    "python-dotenv>=1.0.0",
+]

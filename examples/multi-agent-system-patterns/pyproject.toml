@@ -1,0 +1,35 @@
+[project]
+name = "multi-agent-system-patterns"
+version = "0.1.0"
+description = "Multi-agent system patterns"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "glaip-sdk[local,privacy,pipeline]>=0.7.19",
+]
+
+# Private registries for aip-agents internal dependencies:
+# - gen-ai-internal: gllm-privacy, gllm-memory packages
+# - gen-ai: gllm-memory dependencies (e.g., gllm-datastore-binary)
+# Note: gllm-memory is sourced from gen-ai-internal but requires gen-ai for its dependencies
+[[tool.uv.index]]
+name = "gen-ai-internal"
+url = "https://glsdk.gdplabs.id/gen-ai-internal/simple/"
+
+[[tool.uv.index]]
+name = "gen-ai"
+url = "https://glsdk.gdplabs.id/gen-ai/simple/"
+
+[tool.uv]
+package = true
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["aggregator", "hierarchical", "loop", "parallel", "router", "sequential"]
