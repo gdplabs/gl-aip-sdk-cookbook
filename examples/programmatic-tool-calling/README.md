@@ -5,6 +5,8 @@ This cookbook includes:
 - `main_with_mcp.py`: PTC baseline with MCP integration
 - `main_without_ptc.py`: budget-audit scenario without PTC (generic tool-usage instruction)
 - `main_with_ptc.py`: same budget-audit scenario with PTC (generic orchestration instruction, not step-by-step handholding)
+- `main_without_ptc_remote.py`: remote version without PTC (requires AIP_API_URL + AIP_API_KEY)
+- `main_with_ptc_remote.py`: remote version with PTC (requires AIP_API_URL + AIP_API_KEY)
 - `compare_runs_budget.py`: side-by-side benchmark for the same scenario
 
 It shows that you can use MCP and custom tools in one agent:
@@ -43,8 +45,10 @@ Note: Commands below assume you run them from this folder unless noted otherwise
 
    ```bash
    cp .env.example .env
-   # Edit .env with OPENAI_API_KEY
-   # Add E2B_API_KEY when running the PTC script
+   # Edit .env with:
+   # - OPENAI_API_KEY (required for local runs)
+   # - E2B_API_KEY (required for PTC local runs)
+   # - AIP_API_URL + AIP_API_KEY (required for remote runs)
    ```
 
 2. Install dependencies
@@ -71,7 +75,14 @@ Note: Commands below assume you run them from this folder unless noted otherwise
    uv run python main_with_ptc.py
    ```
 
-6. Compare both modes on the same scenario
+6. Run remote versions (requires AIP_API_URL + AIP_API_KEY)
+
+   ```bash
+   uv run python main_without_ptc_remote.py
+   uv run python main_with_ptc_remote.py
+   ```
+
+7. Compare both modes on the same scenario
 
    ```bash
    uv run python compare_runs_budget.py
@@ -120,6 +131,8 @@ programmatic-tool-calling/
 ├── main_with_mcp.py
 ├── main_without_ptc.py
 ├── main_with_ptc.py
+├── main_without_ptc_remote.py
+├── main_with_ptc_remote.py
 ├── compare_runs_budget.py
 ├── pyproject.toml
 └── .env.example
