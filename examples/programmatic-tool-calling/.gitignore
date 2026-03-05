@@ -1,7 +1,9 @@
 .venv
 __pycache__
 
+.env
 .env.*
 !.env.example
 
 *.egg-info
+uv.lock
