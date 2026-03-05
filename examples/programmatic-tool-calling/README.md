@@ -98,6 +98,11 @@ Note: Commands below assume you run them from this folder unless noted otherwise
    PTC can still be faster on complex workflows by reducing model round-trips,
    but token and step reduction are the most stable signals in this example.
 
+   In this scenario, non-PTC can also be less consistent on correctness when it
+   must reason across large intermediate tool outputs over multiple turns. PTC
+   tends to be more reliable because aggregation/filtering runs in code before
+   the final answer.
+
    Edit variables at the top of `compare_runs_budget.py` if needed:
 
    - `QUERY`
