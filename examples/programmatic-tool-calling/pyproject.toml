@@ -1,0 +1,20 @@
+[project]
+name = "programmatic-tool-calling"
+version = "0.1.0"
+description = "Programmatic Tool Calling Example"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "glaip-sdk[local]>=0.8",
+    "opentelemetry-instrumentation-langchain<0.53.0",
+    "python-dotenv>=1.0.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
