@@ -78,9 +78,14 @@ Note: Commands below assume you run them from this folder unless noted otherwise
    ```
 
    This scenario uses large raw expense line-items,
-   so code execution can aggregate totals before the final answer. It prints duration,
-   wall time, token usage, and LLM step count. The non-PTC run is constrained to one
-   tool call per turn so round-trip overhead is visible.
+   so code execution can aggregate totals before the final answer. It reports correctness,
+   token usage, and LLM step count. For fairness, the non-PTC run may batch independent
+   tool calls when supported by the runtime.
+
+   Latency is intentionally not used as the primary benchmark signal here because
+   sandbox startup and environment variance can dominate short runs. In general,
+   PTC can still be faster on complex workflows by reducing model round-trips,
+   but token and step reduction are the most stable signals in this example.
 
    Edit variables at the top of `compare_runs_budget.py` if needed:
 
