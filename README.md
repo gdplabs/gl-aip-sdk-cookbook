@@ -11,7 +11,7 @@ Welcome to the **GL AIP Cookbook** - a comprehensive collection of sample code a
 ## Examples
 
 - **Default server-backed flows**: `hello-world`, `multi-agent`, `runtime-config`, `modular-tool-integration`, `agent-export-import`
-- **Local-run flows**: `hello-world-local`, `multi-agent-system-patterns`
+- **Local-run flows**: `hello-world-local`, `multi-agent-system-patterns`, `tool-state-handoff-local`
 
 Each example README contains its own prerequisites and environment configuration.
 
