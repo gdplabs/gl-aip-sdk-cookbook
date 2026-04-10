@@ -120,6 +120,7 @@ python <example_file>.py
 | **Integration Examples** | | | |
 | `main_with_mcp.py` | `uv run python main_with_mcp.py` | Agent with MCP (Model Context Protocol) integration | `OPENAI_API_KEY`<br>`ARXIV_MCP_API_KEY` (optional)<br>`ARXIV_MCP_AUTH_TOKEN` (optional) |
 | `main_with_gl_connectors_tool.py` | `uv run python main_with_gl_connectors_tool.py` | Agent using GL Connectors | `OPENAI_API_KEY`<br>`GL_CONNECTORS_BASE_URL`<br>`GL_CONNECTORS_API_KEY`<br>`GL_CONNECTORS_USERNAME`<br>`GL_CONNECTORS_PASSWORD`<br>`GL_CONNECTORS_IDENTIFIER` (optional) |
+| `main_with_hermes_skills.py` | `uv run python main_with_hermes_skills.py` | Agent with Hermes `google-forms` skill and fixed survey query | `OPENAI_API_KEY`<br>`GFORMS` |
 | `main_with_native_tool.py` | `uv run python main_with_native_tool.py --all`<br>`uv run python main_with_native_tool.py --e2b`<br>`uv run python main_with_native_tool.py --serper`<br>`uv run python main_with_native_tool.py --browser`<br>`uv run python main_with_native_tool.py --query "..."` | Agent with native tools (E2B, Serper, Browser Use) | `OPENAI_API_KEY`<br>`E2B_API_KEY` (for `--e2b`)<br>`SERPER_API_KEY` (for `--serper`)<br>No API key needed for `--browser` |
 
 ## Running Examples with Command-Line Flags
