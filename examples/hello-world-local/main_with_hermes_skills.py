@@ -8,7 +8,7 @@ from aip_agents.middleware.skills import SkillConfig
 from glaip_sdk.agents import Agent, LocalDiskConfig
 
 
-SKILL_SOURCE = "https://github.com/raychrisgdp/hermes-skills/tree/b813486cfc6771bf652ee3fe5c07eac89f091151/google-forms"
+SKILL_SOURCE = "https://github.com/raychrisgdp/hermes-skills/tree/docs/google-docs-scope-links/google-forms"
 QUERY = (
     "Please use the google-forms skill to create a Google Form for a survey about agent skills with exactly these "
     "3 required paragraph questions: 1) How do you mostly use agent skills in your workflow? "
