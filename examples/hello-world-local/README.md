@@ -123,6 +123,16 @@ python <example_file>.py
 | `main_with_hermes_skills.py` | `uv run python main_with_hermes_skills.py` | Agent with Hermes `google-forms` skill and fixed survey query | `OPENAI_API_KEY`<br>`GFORMS` |
 | `main_with_native_tool.py` | `uv run python main_with_native_tool.py --all`<br>`uv run python main_with_native_tool.py --e2b`<br>`uv run python main_with_native_tool.py --serper`<br>`uv run python main_with_native_tool.py --browser`<br>`uv run python main_with_native_tool.py --query "..."` | Agent with native tools (E2B, Serper, Browser Use) | `OPENAI_API_KEY`<br>`E2B_API_KEY` (for `--e2b`)<br>`SERPER_API_KEY` (for `--serper`)<br>No API key needed for `--browser` |
 
+### `main_with_hermes_skills.py` env setup
+
+Copy `.env.example` and fill these values:
+
+```bash
+OPENAI_API_KEY="your-openai-key"
+GFORMS="https://script.google.com/macros/s/your-web-app-id/exec"
+GFORMS_SECRET="your-web-app-secret-or-empty-if-not-required"
+```
+
 ## Running Examples with Command-Line Flags
 
 ### `main_with_native_tool.py` - Native Tools Testing
