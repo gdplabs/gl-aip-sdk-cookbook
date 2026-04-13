@@ -20,10 +20,26 @@ uv sync
 uv run python 01_file_discovery.py
 ```
 
+## Shorthand Notation
+
+`filesystem=True` is a shorthand for `LocalDiskConfig()` with default settings:
+
+```python
+from glaip_sdk.agents import Agent
+
+# These are equivalent:
+agent = Agent(filesystem=True)                           # Shorthand
+agent = Agent(filesystem=LocalDiskConfig())              # Explicit
+agent = Agent(filesystem=LocalDiskConfig(base_directory="/tmp"))  # With custom path
+```
+
+The shorthand creates a `LocalDiskBackend` in a temporary directory. Use explicit config when you need persistence or custom paths.
+
 ## Examples
 
 | # | File | Scenario | Key Pattern | Requires |
 |---|------|----------|-------------|----------|
+| 00 | `00_quick_start.py` | Filesystem=True shorthand | Simplest usage | OPENAI_API_KEY |
 | 01 | `01_file_discovery.py` | Discover and read files | ls → read_file | OPENAI_API_KEY |
 | 02 | `02_file_lifecycle.py` | Create then modify a file | write_file → edit_file | OPENAI_API_KEY |
 | 03 | `03_data_pipeline.py` | CSV to report pipeline | read → aggregate → write | OPENAI_API_KEY |
@@ -31,6 +47,12 @@ uv run python 01_file_discovery.py
 | 05 | `05_security_audit.py` | Find hardcoded secrets | grep → read_file → risk report | OPENAI_API_KEY |
 | 06 | `06_tool_output_eviction.py` | Large output → auto-save → read back | custom tool + eviction config | OPENAI_API_KEY |
 | 07 | `07_sandbox_execute.py` | Run Python in isolated sandbox | execute + artifact tracking | E2B_API_KEY |
+
+## About ExecuteTool
+
+The `execute` tool is **only available with SandboxConfig** (enabled by default). 
+
+For security, never use `LocalDiskConfig(allow_execute=True)` — always use SandboxConfig for code execution to ensure isolation.
 
 ## GitBook Reference
 
