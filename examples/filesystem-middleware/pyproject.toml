@@ -1,0 +1,16 @@
+[project]
+name = "filesystem-middleware"
+version = "0.1.0"
+description = "Filesystem middleware cookbook — agent workflows with read, write, edit, grep, ls, execute, and eviction"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "glaip-sdk[local]",
+]
+
+[tool.uv]
+package = false
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
