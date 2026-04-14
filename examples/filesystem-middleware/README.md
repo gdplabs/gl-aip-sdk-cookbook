@@ -46,7 +46,7 @@ The shorthand creates a `LocalDiskBackend` in a temporary directory. Use explici
 | 04 | `04_codebase_analysis.py` | Search across 15+ files | grep → read_file → report | OPENAI_API_KEY |
 | 05 | `05_security_audit.py` | Find hardcoded secrets | grep → read_file → risk report | OPENAI_API_KEY |
 | 06 | `06_tool_output_eviction.py` | Large output → auto-save → read back | custom tool + eviction config | OPENAI_API_KEY |
-| 07 | `07_sandbox_execute.py` | Run Python in isolated sandbox | execute + artifact tracking | E2B_API_KEY |
+| 07 | `07_sandbox_execute.py` | Run Python in isolated sandbox | execute + artifact tracking | OPENAI_API_KEY, E2B_API_KEY |
 
 ## About ExecuteTool
 
@@ -58,4 +58,4 @@ For security, never use `LocalDiskConfig(allow_execute=True)` — always use San
 
 - [Agent Filesystem Guide](https://gdplabs.gitbook.io/sdk/gl-ai-agent-package/guides/agent-filesystem) — tool reference, backend options, pagination
 - [Sandbox Deep Dive](https://gdplabs.gitbook.io/sdk/gl-ai-agent-package/guides/agent-filesystem/sandbox) — sandbox setup and configuration
-- [File Processing Guide](https://gdplabs.gitbitbook.io/sdk/gl-ai-agent-package/guides/file-processing) — document ingestion (attachments/chunks)
+- [File Processing Guide](https://gdplabs.gitbook.io/sdk/gl-ai-agent-package/guides/file-processing) — document ingestion (attachments/chunks)
