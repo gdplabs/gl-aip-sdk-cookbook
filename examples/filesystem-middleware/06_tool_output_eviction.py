@@ -34,18 +34,23 @@ def fetch_sales_export(region: str) -> str:
     return "\n".join(line + "," + padding for line in lines)
 
 
-agent = Agent(
-    name="eviction-analyst",
-    instruction="You are a data analyst. When tool output is auto-saved to a file path, use read_file to read it. Always access the full file, not the preview.",
-    filesystem=LocalDiskConfig(),
-    tools=[fetch_sales_export],
-    model="openai/gpt-5-nano",
-)
+def main():
+    agent = Agent(
+        name="eviction-analyst",
+        instruction="You are a data analyst. When tool output is auto-saved to a file path, use read_file to read it. Always access the full file, not the preview.",
+        filesystem=LocalDiskConfig(base_directory="/tmp"),
+        tools=[fetch_sales_export],
+        model="openai/gpt-5-nano",
+    )
 
-result = agent.run(
-    "Fetch the APAC sales export and tell me the amount and channel in row 250. "
-    "If the data was auto-saved, read the file to get the actual values.",
-    local=True,
-)
+    result = agent.run(
+        "Fetch the APAC sales export and tell me the amount and channel in row 250. "
+        "If the data was auto-saved, read the file to get the actual values.",
+        local=True,
+    )
 
-print(result)
+    print(result)
+
+
+if __name__ == "__main__":
+    main()

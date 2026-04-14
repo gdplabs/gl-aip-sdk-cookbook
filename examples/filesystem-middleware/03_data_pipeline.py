@@ -16,22 +16,28 @@ from aip_agents.middleware.backends.local_disk import LocalDiskBackend
 
 load_dotenv()
 
-data_dir = Path(__file__).parent / "data"
-backend = LocalDiskBackend(base_directory=str(data_dir))
 
-agent = Agent(
-    name="data-analyst",
-    instruction="You are a data analyst. Always inspect source data before answering.",
-    filesystem=LocalDiskConfig(base_directory=str(data_dir)),
-)
+def main():
+    data_dir = Path(__file__).parent / "data"
+    backend = LocalDiskBackend(base_directory=str(data_dir))
 
-result = agent.run(
-    "Read /workspace/sales_q3.csv, aggregate revenue per channel, "
-    "then save a markdown report to /workspace/reports/q3_summary.md "
-    "with channel totals and the grand total.",
-    local=True,
-)
+    agent = Agent(
+        name="data-analyst",
+        instruction="You are a data analyst. Always inspect source data before answering.",
+        filesystem=LocalDiskConfig(base_directory=str(data_dir)),
+    )
 
-print(result)
-print("\n--- Generated Report ---")
-print(backend.read("/workspace/reports/q3_summary.md"))
+    result = agent.run(
+        "Read /workspace/sales_q3.csv, aggregate revenue per channel, "
+        "then save a markdown report to /workspace/reports/q3_summary.md "
+        "with channel totals and the grand total.",
+        local=True,
+    )
+
+    print(result)
+    print("\n--- Generated Report ---")
+    print(backend.read("/workspace/reports/q3_summary.md"))
+
+
+if __name__ == "__main__":
+    main()

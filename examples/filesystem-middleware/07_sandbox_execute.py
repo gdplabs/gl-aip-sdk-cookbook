@@ -12,23 +12,26 @@ from dotenv import load_dotenv
 from glaip_sdk.agents import Agent
 from glaip_sdk.models.filesystem import SandboxConfig
 
-from aip_agents.middleware.tools.execute import ExecuteTool
-
 load_dotenv()
 
-if not os.getenv("E2B_API_KEY"):
-    raise RuntimeError("E2B_API_KEY is required")
 
-agent = Agent(
-    name="sandbox-executor",
-    instruction="You are a Python expert. Execute code to solve problems.",
-    filesystem=SandboxConfig(base_dir="/workspace", timeout_seconds=300),
-    tools=[ExecuteTool],
-)
+def main():
+    if not os.getenv("E2B_API_KEY"):
+        raise RuntimeError("E2B_API_KEY is required")
 
-result = agent.run(
-    "Calculate the factorial of 10 using Python and save the result to /workspace/factorial.txt",
-    local=True,
-)
+    agent = Agent(
+        name="sandbox-executor",
+        instruction="You are a Python expert. Execute code to solve problems.",
+        filesystem=SandboxConfig(base_dir="/workspace", timeout_seconds=300),
+    )
 
-print(result)
+    result = agent.run(
+        "Calculate the factorial of 10 using Python and save the result to /workspace/factorial.txt",
+        local=True,
+    )
+
+    print(result)
+
+
+if __name__ == "__main__":
+    main()

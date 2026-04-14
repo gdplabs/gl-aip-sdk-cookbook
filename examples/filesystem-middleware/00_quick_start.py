@@ -12,15 +12,21 @@ from glaip_sdk.agents import Agent
 
 load_dotenv()
 
-agent = Agent(
-    name="quick-start",
-    instruction="You are a helpful assistant with access to a filesystem.",
-    filesystem=True,  # Shorthand for LocalDiskConfig()
-)
 
-result = agent.run(
-    "Create a greeting file at /workspace/hello.txt and read it back.",
-    local=True,
-)
+def main():
+    agent = Agent(
+        name="quick-start",
+        instruction="You are a helpful assistant with access to a filesystem.",
+        filesystem=True,  # Shorthand: creates temp directory
+    )
 
-print(result)
+    result = agent.run(
+        "Create a greeting file at /workspace/hello.txt and read it back.",
+        local=True,
+    )
+
+    print(result)
+
+
+if __name__ == "__main__":
+    main()

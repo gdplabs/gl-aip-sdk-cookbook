@@ -26,10 +26,10 @@ uv run python 01_file_discovery.py
 
 ```python
 from glaip_sdk.agents import Agent
+from glaip_sdk.models.filesystem import LocalDiskConfig
 
 # These are equivalent:
-agent = Agent(filesystem=True)                           # Shorthand
-agent = Agent(filesystem=LocalDiskConfig())              # Explicit
+agent = Agent(filesystem=True)                           # Shorthand (temp directory)
 agent = Agent(filesystem=LocalDiskConfig(base_directory="/tmp"))  # With custom path
 ```
 

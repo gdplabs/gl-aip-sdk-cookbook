@@ -14,21 +14,27 @@ from glaip_sdk.models.filesystem import LocalDiskConfig
 
 load_dotenv()
 
-data_dir = Path(__file__).parent / "data"
 
-agent = Agent(
-    name="security-auditor",
-    instruction="You are a security auditor specializing in finding hardcoded credentials.",
-    filesystem=LocalDiskConfig(base_directory=str(data_dir)),
-    model="openai/gpt-5-nano",
-)
+def main():
+    data_dir = Path(__file__).parent / "data"
 
-result = agent.run(
-    "Perform a security audit of the directory. "
-    "Search for hardcoded credentials: password, api_key, secret, token. "
-    "For each finding, classify risk (HIGH/MEDIUM/LOW) "
-    "and provide specific remediation.",
-    local=True,
-)
+    agent = Agent(
+        name="security-auditor",
+        instruction="You are a security auditor specializing in finding hardcoded credentials.",
+        filesystem=LocalDiskConfig(base_directory=str(data_dir)),
+        model="openai/gpt-5-nano",
+    )
 
-print(result)
+    result = agent.run(
+        "Perform a security audit of the directory. "
+        "Search for hardcoded credentials: password, api_key, secret, token. "
+        "For each finding, classify risk (HIGH/MEDIUM/LOW) "
+        "and provide specific remediation.",
+        local=True,
+    )
+
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
