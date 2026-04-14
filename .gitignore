@@ -14,3 +14,8 @@ scratch/*
 # Generated files
 data/workspace/reports/*.md
 !data/workspace/reports/.gitkeep
+
+# Cookbook-specific runtime artifacts (examples/filesystem-middleware)
+examples/filesystem-middleware/scratch/**
+!examples/filesystem-middleware/scratch/.gitkeep
+examples/filesystem-middleware/data/workspace/*.md
