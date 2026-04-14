@@ -30,6 +30,30 @@ Default run mode in this example is deployment (`agent.deploy()`). If you keep d
    uv run main.py
    ```
 
+## Hermes Skill (Remote Example)
+
+This folder also includes a remote/deployed Agent Skills example:
+
+- File: `main_with_hermes_skills_remote.py`
+- Command: `uv run python main_with_hermes_skills_remote.py`
+
+Required env vars for this flow:
+
+- `AIP_API_URL`
+- `AIP_API_KEY`
+- `OPENAI_API_KEY`
+- `GFORMS`
+
+Optional:
+
+- `GFORMS_SECRET`
+
+Behavior note:
+
+- This script deploys the agent (`agent.deploy()`) and runs via remote mode.
+- For local mode without deploy, use
+  `examples/hello-world-local/main_with_hermes_skills.py`.
+
 ## Project Structure
 
 ```

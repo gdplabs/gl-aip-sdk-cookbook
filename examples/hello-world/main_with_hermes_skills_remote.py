@@ -1,11 +1,11 @@
-"""Hello World - Hermes Skill Example (Google Forms)."""
+"""Hello World - Hermes Skill Example (Remote/Deployed)."""
 
 from __future__ import annotations
 
 from dotenv import load_dotenv
 
 from aip_agents.middleware.skills import SkillConfig
-from glaip_sdk.agents import Agent, LocalDiskConfig
+from glaip_sdk import Agent
 
 
 SKILL_SOURCE = "https://github.com/raychrisgdp/hermes-skills/tree/d7f2e5da694f2bac3b5014973f1cabe0ae5b4457/google-forms"
@@ -21,11 +21,11 @@ load_dotenv(override=True)
 
 
 agent = Agent(
-    name="hermes_skill_google-forms",
+    name="hermes_skill_google-forms_remote",
     instruction="Follow the user query exactly. Do not ask follow-up questions.",
     model="openai/gpt-5.4",
     skills=SkillConfig(skills=[SKILL_SOURCE], auto_read=False),
-    filesystem=LocalDiskConfig(base_directory="~/.workspace/hermes-skills-agent", allow_execute=True),
 )
 
-print(agent.run(QUERY, verbose=True, local=True))
+agent.deploy()
+print(agent.run(QUERY, verbose=True))

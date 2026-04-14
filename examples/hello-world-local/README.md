@@ -133,6 +133,11 @@ GFORMS="https://script.google.com/macros/s/your-web-app-id/exec"
 GFORMS_SECRET="your-web-app-secret-or-empty-if-not-required"
 ```
 
+Remote counterpart for the same skills flow:
+
+- `examples/hello-world/main_with_hermes_skills_remote.py`
+- Requires `AIP_API_URL` and `AIP_API_KEY` in addition to the form-related vars.
+
 ## Running Examples with Command-Line Flags
 
 ### `main_with_native_tool.py` - Native Tools Testing
