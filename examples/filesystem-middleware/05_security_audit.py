@@ -20,7 +20,9 @@ def main():
 
     agent = Agent(
         name="security-auditor",
-        instruction="You are a security auditor specializing in finding hardcoded credentials.",
+        instruction="You are a security auditor specializing in finding hardcoded credentials. "
+        "Redact actual secret values in your response (show them as [REDACTED]). "
+        "Provide specific remediation advice for each finding.",
         filesystem=LocalDiskConfig(base_directory=str(data_dir)),
         model="openai/gpt-5-nano",
     )

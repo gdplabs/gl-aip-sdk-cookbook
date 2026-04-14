@@ -8,12 +8,18 @@ Requires: OPENAI_API_KEY
 Run:     uv run python 06_tool_output_eviction.py
 """
 
+from pathlib import Path
+
 from dotenv import load_dotenv
 from glaip_sdk.agents import Agent
 from glaip_sdk.models.filesystem import LocalDiskConfig
 from langchain_core.tools import tool
 
 load_dotenv()
+
+# Create scratch directory for tool outputs
+scratch_dir = Path(__file__).parent / "scratch"
+scratch_dir.mkdir(exist_ok=True)
 
 
 @tool
@@ -38,7 +44,7 @@ def main():
     agent = Agent(
         name="eviction-analyst",
         instruction="You are a data analyst. When tool output is auto-saved to a file path, use read_file to read it. Always access the full file, not the preview.",
-        filesystem=LocalDiskConfig(base_directory="/tmp"),
+        filesystem=LocalDiskConfig(base_directory=str(scratch_dir)),
         tools=[fetch_sales_export],
         model="openai/gpt-5-nano",
     )

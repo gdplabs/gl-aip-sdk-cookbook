@@ -18,16 +18,15 @@ load_dotenv()
 
 
 def main():
-    data_dir = Path(__file__).parent / "data"
-    workspace_dir = data_dir / "workspace"
-    workspace_dir.mkdir(exist_ok=True)
+    scratch_dir = Path(__file__).parent / "scratch"
+    scratch_dir.mkdir(exist_ok=True)
 
-    backend = LocalDiskBackend(base_directory=str(data_dir))
+    backend = LocalDiskBackend(base_directory=str(scratch_dir))
 
     agent = Agent(
         name="lifecycle-agent",
         instruction="You are a precise documentation assistant.",
-        filesystem=LocalDiskConfig(base_directory=str(data_dir)),
+        filesystem=LocalDiskConfig(base_directory=str(scratch_dir)),
     )
 
     agent.run(

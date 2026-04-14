@@ -29,14 +29,14 @@ def main():
 
     result = agent.run(
         "Read /workspace/sales_q3.csv, aggregate revenue per channel, "
-        "then save a markdown report to /workspace/reports/q3_summary.md "
+        "then save a markdown report to /workspace/q99_analysis.md "
         "with channel totals and the grand total.",
         local=True,
     )
 
     print(result)
     print("\n--- Generated Report ---")
-    print(backend.read("/workspace/reports/q3_summary.md"))
+    print(backend.read("/workspace/q99_analysis.md"))
 
 
 if __name__ == "__main__":
