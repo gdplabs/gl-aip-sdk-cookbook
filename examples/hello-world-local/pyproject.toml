@@ -6,6 +6,7 @@ requires-python = ">=3.11,<3.13"
 dependencies = [
     "pydantic>=2.0.0",
     "python-dotenv>=1.0.0",
+    "gl-connectors-tools @ file:///home/saul-sayers/.cache/pypoetry/artifacts/e1/31/1d/5c1374e2dce40b9276679e999f18a73296926bc9646a8fa1dd2cc5b680/gl_connectors_tools-0.0.6-py3-none-any.whl",
     "glaip-sdk[local,privacy,memory]",
 ]
 
