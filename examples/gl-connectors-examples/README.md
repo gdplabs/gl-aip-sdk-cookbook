@@ -1,6 +1,8 @@
 # GL Connectors Examples
 
-This project demonstrates the different ways to integrate **GL Connectors** with an AI agent built on `glaip_sdk`. Each example targets the same task — listing GitHub issues / pull requests of a repository — so you can compare the integration styles side by side: calling the connector API directly, writing your own LangChain tool, using a pre-built function-call tool from `aip_agents`, talking to a remote MCP server, or letting the agent follow an external Skill definition.
+This project demonstrates the different ways to integrate **GL Connectors** with an AI agent built on `glaip_sdk`. Each example targets the same task — listing GitHub issues of a repository — so you can compare the integration styles side by side: calling the connector API directly, writing your own LangChain tool, using a pre-built function-call tool from `aip_agents`, talking to a remote MCP server, or letting the agent follow an external Skill definition.
+
+All scripts run against [`github/awesome-copilot`](https://github.com/github/awesome-copilot), a public GitHub repository with a healthy backlog of real issues — chosen so every example has actual data to return.
 
 ## Prerequisites
 
