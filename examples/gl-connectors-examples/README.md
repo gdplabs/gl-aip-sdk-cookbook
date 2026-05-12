@@ -1,6 +1,6 @@
 # GL Connectors Examples
 
-This project demonstrates various methods of integrating and utilizing **GL Connectors** with AI Agents, ranging from direct SDK calls to more advanced tool integrations like custom LangChain tools, pre-built `aip_agents` tools, remote MCP servers, and skill files.
+This project demonstrates the different ways to integrate **GL Connectors** with an AI agent built on `glaip_sdk`. Each example targets the same task — listing GitHub issues / pull requests of a repository — so you can compare the integration styles side by side: writing your own LangChain tool, using a pre-built tool from `aip_agents`, talking to a remote MCP server, or letting the agent follow an external Skill definition.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ cp .env.example .env
 Populate the following variables inside `.env`:
 
 - `OPENAI_API_KEY`: Your OpenAI API key (required for the `glaip_sdk` Agent to function).
-- `GITHUB_TOKEN`: A GitHub Personal Access Token (only required if you intend to run the `main_using_skill.py` or `main_using_all.py` example).
+- `GITHUB_TOKEN`: A GitHub Personal Access Token (only required if you intend to run the `main_agent_skill.py` or `main_all_combined.py` example).
 - `GL_CONNECTORS_API_KEY`: Your master API key for GL Connectors.
 - `GL_CONNECTORS_USER_TOKEN`: Your user-specific token for accessing GL Connectors services.
 
@@ -39,33 +39,37 @@ Populate the following variables inside `.env`:
 
 ## Project Examples
 
-This project contains several scripts, each showcasing a different way to interact with GL Connectors and GitHub.
+Each script demonstrates a different integration style for the same underlying capability (listing GitHub issues / pull requests). Pick the one that matches how much of the plumbing you want to own:
 
-### 1. `main.py`
-**What it does:** Uses the `GLConnectors` SDK directly via standard asynchronous Python to fetch a list of GitHub issues. It completely bypasses AI agents.
-**Execution:** `uv run main.py`
+| Script | Integration style | What you write |
+| --- | --- | --- |
+| `main_custom_tool.py` | Custom LangChain tool wrapping the GL Connectors SDK | A full `BaseTool` subclass |
+| `main_prebuilt_tool.py` | Pre-built `GLConnectorTool` from `aip_agents` | Just the connector name |
+| `main_remote_mcp.py` | Remote MCP server hosted by GL Connectors | An `MCP` config block |
+| `main_agent_skill.py` | External Skill definition + local filesystem | A skill URL + filesystem config |
+| `main_all_combined.py` | All of the above on a single agent | Everything, for comparison |
 
-### 2. `main_using_api.py`
-**What it does:** Demonstrates how to create a custom LangChain `BaseTool` (`GitHubListIssuesTool`) that wraps the `GLConnectors` SDK. The tool is then provided to an AI agent, which interprets the user's prompt and uses the tool accordingly.
-**Execution:** `uv run main_using_api.py`
+### 1. `main_custom_tool.py` — Custom LangChain tool
+**What it does:** Hand-rolls a LangChain `BaseTool` (`GitHubListIssuesTool`) that wraps the `GLConnectors` SDK. You define the input schema, the `_run` method, and the call into `connector.execute(...)` yourself. Use this when you want full control over argument validation, error handling, or response shaping.
+**Execution:** `uv run main_custom_tool.py`
 
-### 3. `main_using_glcon_tool.py`
-**What it does:** Simplifies tool creation by utilizing the pre-built `GLConnectorTool` from the `aip_agents` package. You don't need to write the `_run` boilerplate; you just initialize the tool with the name of the connector service you wish to use (`github_list_issues_tool`) and attach it to the agent.
-**Execution:** `uv run main_using_glcon_tool.py`
+### 2. `main_prebuilt_tool.py` — Pre-built `GLConnectorTool`
+**What it does:** Skips the boilerplate by using `GLConnectorTool` from `aip_agents`. You only supply the connector operation name (`github_list_issues_tool`) and credentials — the tool's schema and execution wiring come for free. Use this when the default behavior of a GL Connectors operation is all you need.
+**Execution:** `uv run main_prebuilt_tool.py`
 
-### 4. `main_using_mcp.py`
-**What it does:** Uses the **Model Context Protocol (MCP)** to connect the agent to a remote GL Connectors MCP server. The agent automatically negotiates available tools (like `github_list_issues`) over HTTP without needing local Python tool definitions.
-**Execution:** `uv run main_using_mcp.py`
+### 3. `main_remote_mcp.py` — Remote MCP server
+**What it does:** Connects the agent to GL Connectors' hosted **Model Context Protocol (MCP)** server over HTTP. Tools are discovered and negotiated at runtime — no local tool classes required. Use this when you want zero local tool code and are happy to let the agent see whatever the MCP server exposes (optionally restricted via `allowed_tools`).
+**Execution:** `uv run main_remote_mcp.py`
 
-### 5. `main_using_skill.py`
-**What it does:** Leverages an external Skill definition file (from GitHub's awesome-copilot repository) and a local filesystem workspace. The agent follows the markdown instructions inside the skill to natively interact with GitHub issues using your local `GITHUB_TOKEN`.
-**Execution:** `uv run main_using_skill.py`
+### 4. `main_agent_skill.py` — External Agent Skill
+**What it does:** Points the agent at an external [Agent Skill](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview) — a directory of markdown instructions and helper files that teaches the agent how to perform a task. This example uses the [`github-issues` skill from `github/awesome-copilot`](https://github.com/github/awesome-copilot/tree/main/skills/github-issues), which instructs the agent to drive the `gh` CLI against your local `GITHUB_TOKEN` from a sandboxed filesystem. Use this when the workflow is best described as a procedure for the agent to follow, rather than a single API call.
+**Execution:** `uv run main_agent_skill.py`
 
-### 6. `main_using_all.py`
-**What it does:** Registers the **same operation** (`github_list_pull_requests`) via multiple integration methods on a single agent, to observe which one the LLM chooses at runtime:
-- A Custom API Tool (active)
-- A pre-built `GLConnectorTool` (commented out, can be re-enabled)
-- An MCP Server connection (active)
+### 5. `main_all_combined.py` — All integrations on one agent
+**What it does:** Registers the **same operation** (`github_list_pull_requests`) via multiple integration methods on a single agent, so you can observe which one the LLM picks at runtime:
+- A custom LangChain tool (active)
+- A pre-built `GLConnectorTool` (active)
+- An MCP server connection (active)
 
-The agent is given a prompt to list all pull requests, find the oldest one, and print its full data.
-**Execution:** `uv run main_using_all.py`
+The agent is prompted to list all pull requests, find the oldest one, and print its full data. Useful for debugging tool-selection behavior or comparing latencies between styles.
+**Execution:** `uv run main_all_combined.py`
