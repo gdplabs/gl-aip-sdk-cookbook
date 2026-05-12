@@ -1,0 +1,12 @@
+[project]
+name = "gl-connectors-examples"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "gl-connectors-sdk>=0.1.6",
+    "glaip-sdk[local]>=0.8.25",
+    "aip-agents (>=0.2.2,<0.3.0)",
+    "gl-connectors-tools-binary (>=0.0.8b1,<0.0.9)",
+]
