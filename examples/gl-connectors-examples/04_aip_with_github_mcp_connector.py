@@ -12,7 +12,7 @@ github_mcp = MCP(
         
 
 agent = Agent(
-    name="github_agent_api",
+    name="aip_with_github_mcp_connector",
     instruction="You are a helpful assistant.",
     mcps=[github_mcp],
     mcp_configs={
@@ -25,5 +25,5 @@ agent = Agent(
         }
     }
 )
-response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/gdplabs/gl-aip-sdk-cookbook?")
+response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/github/awesome-copilot?")
 print(response)

@@ -6,7 +6,7 @@ from glaip_sdk.models.filesystem import LocalDiskConfig
 load_dotenv()
 
 agent = Agent(
-    name="github_agent_api",
+    name="aip_with_github_skills_connector",
     instruction="You are a helpful assistant.",
     skills=["https://github.com/github/awesome-copilot/tree/main/skills/github-issues"],
     filesystem=LocalDiskConfig(
@@ -15,5 +15,5 @@ agent = Agent(
         env={"gh_token": os.getenv("GITHUB_TOKEN")}
     )
 )
-response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/gdplabs/gl-aip-sdk-cookbook?")
+response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/github/awesome-copilot?")
 print(response)

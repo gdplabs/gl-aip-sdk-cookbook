@@ -24,6 +24,6 @@ class GitHubListIssuesTool(BaseTool):
         return data
         
 
-agent = Agent(name="github_agent_api", instruction="You are a helpful assistant.", tools=[GitHubListIssuesTool()])
-response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/gdplabs/gl-aip-sdk-cookbook?")
+agent = Agent(name="aip_with_github_api_connector", instruction="You are a helpful assistant.", tools=[GitHubListIssuesTool()])
+response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/github/awesome-copilot?")
 print(response)

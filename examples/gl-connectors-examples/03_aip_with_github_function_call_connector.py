@@ -15,9 +15,9 @@ github_tool = GLConnectorTool(
 )
 
 agent = Agent(
-    name="github_agent_api",
+    name="aip_with_github_function_call_connector",
     instruction="You are a helpful assistant.",
     tools=[github_tool]
 )
-response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/gdplabs/gl-aip-sdk-cookbook?")
+response = agent.run("How many issues (all issues, not PRs) are there in https://github.com/github/awesome-copilot?")
 print(response)
