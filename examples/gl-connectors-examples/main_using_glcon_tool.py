@@ -11,6 +11,7 @@ os.environ["GL_CONNECTORS_BASE_URL"] = "https://connectors.glair.ai"
 github_tool = GLConnectorTool(
     "github_list_issues_tool",
     api_key=os.getenv("GL_CONNECTORS_API_KEY"),
+    token=os.getenv("GL_CONNECTORS_USER_TOKEN"),
 )
 
 agent = Agent(

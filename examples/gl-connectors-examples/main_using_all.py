@@ -6,7 +6,6 @@ from pydantic import BaseModel, Field
 from langchain_core.tools import BaseTool
 
 from glaip_sdk import Agent, MCP
-from glaip_sdk.models.filesystem import LocalDiskConfig
 from aip_agents.tools.gl_connector import GLConnectorTool
 from gl_connectors_sdk import GLConnectors
 
@@ -31,8 +30,9 @@ class GitHubListPullRequestsTool(BaseTool):
 # --- GLConnector Tool (pre-built tool from aip_agents) ---
 os.environ["GL_CONNECTORS_BASE_URL"] = "https://connectors.glair.ai"
 glcon_tool = GLConnectorTool(
-    "github_list_pull_requests",
+    "github_list_pull_requests_tool",
     api_key=os.getenv("GL_CONNECTORS_API_KEY"),
+    token=os.getenv("GL_CONNECTORS_USER_TOKEN"),
 )
 
 # --- MCP Tool ---
@@ -42,27 +42,21 @@ github_mcp = MCP(
     config={"url": "https://connectors.glair.ai/github/mcp"},
 )
 
-# --- Agent with all tools + MCP + Skill ---
+# --- Agent with API + MCP (same tool: list_pull_requests) ---
 agent = Agent(
-    name="github_agent_all",
+    name="github_agent_all_same_tool",
     instruction="You are a helpful assistant.",
     tools=[GitHubListPullRequestsTool(), glcon_tool],
     mcps=[github_mcp],
     mcp_configs={
         github_mcp: {
-            "allowed_tools": ["github_get_pull"],
+            "allowed_tools": ["github_list_pull_requests"],
             "authentication": {
                 "type": "bearer-token",
                 "token": os.getenv("GL_CONNECTORS_USER_TOKEN"),
             },
         }
     },
-    skills=["https://github.com/github/awesome-copilot/tree/main/skills/github-issues"],
-    filesystem=LocalDiskConfig(
-        base_directory="/tmp/agent_files",
-        allow_execute=True,
-        env={"gh_token": os.getenv("GITHUB_TOKEN")},
-    ),
 )
 
 response = agent.run(

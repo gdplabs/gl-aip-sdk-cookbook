@@ -62,11 +62,10 @@ This project contains several scripts, each showcasing a different way to intera
 **Execution:** `uv run main_using_skill.py`
 
 ### 6. `main_using_all.py`
-**What it does:** The ultimate combination. This script registers **all four integration methods** onto a single agent:
-- A Custom API Tool
-- A pre-built `GLConnectorTool`
-- An MCP Server connection
-- An external GitHub Skill
+**What it does:** Registers the **same operation** (`github_list_pull_requests`) via multiple integration methods on a single agent, to observe which one the LLM chooses at runtime:
+- A Custom API Tool (active)
+- A pre-built `GLConnectorTool` (commented out, can be re-enabled)
+- An MCP Server connection (active)
 
-The agent is given a more complex prompt (listing all pull requests and retrieving data for the oldest one) and is trusted to autonomously select the best tool(s) for the job from its unified arsenal.
+The agent is given a prompt to list all pull requests, find the oldest one, and print its full data.
 **Execution:** `uv run main_using_all.py`

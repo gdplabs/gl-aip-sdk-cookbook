@@ -22,23 +22,6 @@ wheels = [
 ]
 
 [[package]]
-name = "agent-identity-protocol"
-version = "0.3.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "base58" },
-    { name = "biscuit-python" },
-    { name = "cryptography" },
-    { name = "httpx" },
-    { name = "pydantic" },
-    { name = "pyjwt", extra = ["crypto"] },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/77/58/51b18611ad7b36fabbc1a943a20d53cbc900bc8705cec8daccf2f24d907f/agent_identity_protocol-0.3.0.tar.gz", hash = "sha256:e3ab3922705a503c62a7ce396d5b244e6386cafd05f1b649c482cccce3a2a2e7", size = 41310, upload-time = "2026-05-09T09:41:30.93Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/91/c3/ca07c3dc6a5119990194639278af4769a878c2d25e7a1dba8112716a7759/agent_identity_protocol-0.3.0-py3-none-any.whl", hash = "sha256:4c517d86085df37a00e83da63560adbb4250880306b541c9675d5bdbec1ac1e0", size = 29587, upload-time = "2026-05-09T09:41:29.545Z" },
-]
-
-[[package]]
 name = "aioboto3"
 version = "15.5.0"
 source = { registry = "https://pypi.org/simple" }
@@ -170,20 +153,8 @@ wheels = [
 ]
 
 [[package]]
-name = "aip-agents"
-version = "0.2.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "agent-identity-protocol" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e9/81/d344138e7c806e2a69d9ea0b6bcad70a324b723777dee74c289c47496a37/aip_agents-0.2.2.tar.gz", hash = "sha256:5452761a42095158ac20016340ef4723cf25ec0dcd078603bcf1a8470188f132", size = 8317, upload-time = "2026-05-08T04:02:39.223Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/17/bf/66b6101cd1364d07f93bedf478a1b0fcea9bc7d310a0361d7898f39c5c91/aip_agents-0.2.2-py3-none-any.whl", hash = "sha256:d715aeca97505ebbb1bf3cecf58760ae550a7cb86129f2634e70cda85577b055", size = 14129, upload-time = "2026-05-08T04:02:37.662Z" },
-]
-
-[[package]]
 name = "aip-agents-binary"
-version = "0.6.64"
+version = "0.6.68"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "a2a-sdk" },
@@ -216,7 +187,7 @@ dependencies = [
     { name = "watchdog" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7d/65/eee38663a8d39d814b7ab35a69d553911cc4178007adcd617bf0d521b755/aip_agents_binary-0.6.64-py3-none-manylinux_2_31_x86_64.whl", hash = "sha256:79d3116d6844ceb09d7a8ef4dbfb2ff29562ee060be09861298717170470f11d", size = 1087653, upload-time = "2026-05-08T09:26:15.155Z" },
+    { url = "https://files.pythonhosted.org/packages/ee/00/0f0b4e13242f6f5b944b349755bc5ceaa433babd9b32f093e0940790163f/aip_agents_binary-0.6.68-py3-none-manylinux_2_31_x86_64.whl", hash = "sha256:8246e739346f544f246d96d2eff22d268e02663764dd8011d73b16138c683738", size = 1095679, upload-time = "2026-05-12T08:29:16.16Z" },
 ]
 
 [package.optional-dependencies]
@@ -415,15 +386,6 @@ wheels = [
 ]
 
 [[package]]
-name = "base58"
-version = "2.1.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7f/45/8ae61209bb9015f516102fa559a2914178da1d5868428bd86a1b4421141d/base58-2.1.1.tar.gz", hash = "sha256:c5d0cb3f5b6e81e8e35da5754388ddcc6d0d14b6c6a132cb93d69ed580a7278c", size = 6528, upload-time = "2021-10-30T22:12:17.858Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/4a/45/ec96b29162a402fc4c1c5512d114d7b3787b9d1c2ec241d9568b4816ee23/base58-2.1.1-py3-none-any.whl", hash = "sha256:11a36f4d3ce51dfc1043f3218591ac4eb1ceb172919cebe05b52a5bcc8d245c2", size = 5621, upload-time = "2021-10-30T22:12:16.658Z" },
-]
-
-[[package]]
 name = "bcrypt"
 version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -472,27 +434,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c3/b0/1c6a16426d389813b48d95e26898aff79abbde42ad353958ad95cc8c9b21/beautifulsoup4-4.14.3.tar.gz", hash = "sha256:6292b1c5186d356bba669ef9f7f051757099565ad9ada5dd630bd9de5fa7fb86", size = 627737, upload-time = "2025-11-30T15:08:26.084Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1a/39/47f9197bdd44df24d67ac8893641e16f386c984a0619ef2ee4c51fbbc019/beautifulsoup4-4.14.3-py3-none-any.whl", hash = "sha256:0918bfe44902e6ad8d57732ba310582e98da931428d231a5ecb9e7c703a735bb", size = 107721, upload-time = "2025-11-30T15:08:24.087Z" },
-]
-
-[[package]]
-name = "biscuit-python"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a1/ac/46547c8a05196bada4dbb4d2e11baea68736a2997033a3df96e099916f69/biscuit_python-0.4.0.tar.gz", hash = "sha256:9f5ec05e3adcb84efbbee1137678c7a9c72185b125fb7df912dfa8a9e2fdca21", size = 49810, upload-time = "2025-09-26T15:38:32.763Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/08/9839fa06565bf31a8198112e0f4a7e9db0c3898cb3b466ca455343473206/biscuit_python-0.4.0-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:6d7a97da83c47605033c49f9e6145f785fdbac0a5c5d6d1814212f895de315db", size = 1854896, upload-time = "2025-09-26T15:37:09.874Z" },
-    { url = "https://files.pythonhosted.org/packages/4f/19/39afe993b0ab565fdad3490cd6e45e8bcf5c0dd9b277d2f532a211722497/biscuit_python-0.4.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:16b2ea8aad03899549ea5135aebe82edab46a423b3e5309355a488716ab35729", size = 1696450, upload-time = "2025-09-26T15:37:05.762Z" },
-    { url = "https://files.pythonhosted.org/packages/b5/07/457ac3635735501e40214ac927e6c819810e5b03fb83bac28ebd2f85b7a7/biscuit_python-0.4.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:2af8c6faf30f347674e327bb7cf60f4889bc0d3c9e7eabec620f466c77009a5f", size = 1874814, upload-time = "2025-09-26T15:35:42.112Z" },
-    { url = "https://files.pythonhosted.org/packages/b6/96/ac6eee032ed1eab159ca2708be96535be06afa94359104feb088e1afa02a/biscuit_python-0.4.0-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:0abda009b6d7249eca8c53da1003d3c894ecbe063a93d44a48be733fc6a484c0", size = 1862330, upload-time = "2025-09-26T15:35:58.025Z" },
-    { url = "https://files.pythonhosted.org/packages/3f/65/8d51464a168a95b9dc8a316f6e5122005264813b8ddba9dfa3429059963f/biscuit_python-0.4.0-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:6220bdc9fc4796608fbac41a5fda2927d5e7220f5fd68ba97b93e5e512925087", size = 2215264, upload-time = "2025-09-26T15:36:12.737Z" },
-    { url = "https://files.pythonhosted.org/packages/e9/0f/99cc388e26d96b7435274ca248ec90766fa4ecab6fbbfa390b64716c34ec/biscuit_python-0.4.0-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:a1121d17ee1406c6d07365483b0128263c416bc225103421c416b8680fa09a17", size = 1990133, upload-time = "2025-09-26T15:36:28.54Z" },
-    { url = "https://files.pythonhosted.org/packages/90/4a/30a245d9a208586b8c427c9967403cbfbdd95b3146e5b5e6cf259a7f7a1f/biscuit_python-0.4.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:dd8a012ff384e750e312cd8f9d4d9b4654a4f0c9fff40e42e4a7ddbead3b5ce9", size = 1956344, upload-time = "2025-09-26T15:36:57.505Z" },
-    { url = "https://files.pythonhosted.org/packages/3f/fa/287071b7e49fbae6832b441b53ada33e1b1cdb9d25fbdb7155027032088b/biscuit_python-0.4.0-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:c7f9b7032fc89371a761153aa34273a2e6f4908043fadf964fcda558f0af2033", size = 2107679, upload-time = "2025-09-26T15:36:46.207Z" },
-    { url = "https://files.pythonhosted.org/packages/c8/3c/cfdfe61818092cc702decce8bb28196f06349b464d9f5725040bb74247ef/biscuit_python-0.4.0-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:79a9b8afd536f26772964cb99d3c822a92c587ff24ef4c7019f4a2541fa43f27", size = 2055025, upload-time = "2025-09-26T15:37:14.855Z" },
-    { url = "https://files.pythonhosted.org/packages/86/29/eadf160e3f9374567fddd8b2bf27951d62e0baab177e0f8e235304bd0b91/biscuit_python-0.4.0-cp312-cp312-musllinux_1_2_armv7l.whl", hash = "sha256:e07390f2035910264e1c0494d229904c5d23cc0a1ed931fbf84efc06929fb706", size = 2126080, upload-time = "2025-09-26T15:37:35.121Z" },
-    { url = "https://files.pythonhosted.org/packages/4c/58/7dae44b2006b715688f766fd1b679a400216d336b2fb5ef4e983ee5507c6/biscuit_python-0.4.0-cp312-cp312-musllinux_1_2_i686.whl", hash = "sha256:df84d3b625577318f4ef8b92f77457f48cbacc6afc59c5e14584cdce91de7d8a", size = 2169495, upload-time = "2025-09-26T15:38:05.831Z" },
-    { url = "https://files.pythonhosted.org/packages/5d/71/c07417ccfd22553bd109eece5d59b64242f3a929f823dbad78209acb5fc2/biscuit_python-0.4.0-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:b990f93e68b07dad9561f2c6235dfc6919963cd94da3a2637ad5c488a648b042", size = 2169816, upload-time = "2025-09-26T15:38:21.272Z" },
-    { url = "https://files.pythonhosted.org/packages/ab/0b/ae1579ff3c05864f8125154ccfc68125a53d4e038dac38b098a67d468785/biscuit_python-0.4.0-cp312-cp312-win_amd64.whl", hash = "sha256:9116288e232d7d19ce1ee5bae7d7b540dc8586625494a6c545e637b4daec0d56", size = 1614212, upload-time = "2025-09-26T15:38:38.081Z" },
 ]
 
 [[package]]
@@ -1121,7 +1062,7 @@ name = "gl-connectors-examples"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "aip-agents" },
+    { name = "aip-agents-binary" },
     { name = "gl-connectors-sdk" },
     { name = "gl-connectors-tools-binary" },
     { name = "glaip-sdk", extra = ["local"] },
@@ -1129,7 +1070,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aip-agents", specifier = ">=0.2.2,<0.3.0" },
+    { name = "aip-agents-binary", specifier = ">=0.6.64" },
     { name = "gl-connectors-sdk", specifier = ">=0.1.6" },
     { name = "gl-connectors-tools-binary", specifier = ">=0.0.8b1,<0.0.9" },
     { name = "glaip-sdk", extras = ["local"], specifier = ">=0.8.25" },
