@@ -11,7 +11,7 @@ data, status = connector.execute(
     "github",
     "list_issues",
     token=os.getenv("GL_CONNECTORS_USER_TOKEN"),
-    input_={"owner": "github", "repo": "awesome-copilot"},
+    input_={"owner": "github", "repo": "awesome-copilot", "per_page": 1},
 )
 print(status)
 print(data)

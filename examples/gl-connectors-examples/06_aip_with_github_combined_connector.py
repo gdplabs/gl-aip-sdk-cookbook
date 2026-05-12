@@ -16,15 +16,19 @@ load_dotenv()
 class GitHubListIssuesInput(BaseModel):
     owner: str = Field(..., description="The owner of the repository")
     repo: str = Field(..., description="The repository name")
+    per_page: int = Field(30, ge=1, le=100, description="Results per page (max 100).")
+    cursor: str | None = Field(None, description="Pagination cursor from a previous response; omit for the first page.")
 
 class GitHubListIssuesTool(BaseTool):
     name: str = "github_list_issues_api"
-    description: str = "List issues from a GitHub repository using the API directly."
+    description: str = "List issues from a GitHub repository using the API directly. Supports pagination via cursor."
     args_schema: type[BaseModel] = GitHubListIssuesInput
 
-    def _run(self, owner: str, repo: str) -> dict[str, Any]:
+    def _run(self, owner: str, repo: str, per_page: int = 30, cursor: str | None = None) -> dict[str, Any]:
         connector = GLConnectors(api_base_url="https://connectors.glair.ai")
-        params = {"owner": owner, "repo": repo}
+        params: dict[str, Any] = {"owner": owner, "repo": repo, "per_page": per_page}
+        if cursor:
+            params["cursor"] = cursor
         data, _ = connector.execute("github", "list_issues", token=os.getenv("GL_CONNECTORS_USER_TOKEN"), input_=params)
         return data
 
