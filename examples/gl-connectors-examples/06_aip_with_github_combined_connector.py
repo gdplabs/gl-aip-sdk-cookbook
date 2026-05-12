@@ -32,9 +32,11 @@ class GitHubListIssuesTool(BaseTool):
         data, _ = connector.execute("github", "list_issues", token=os.getenv("GL_CONNECTORS_USER_TOKEN"), input_=params)
         return data
 
+github_api_connector_tool = GitHubListIssuesTool()
+
 # --- GLConnector Tool (pre-built tool from aip_agents) ---
 os.environ["GL_CONNECTORS_BASE_URL"] = "https://connectors.glair.ai"
-glcon_tool = GLConnectorTool(
+github_function_call = GLConnectorTool(
     "github_list_issues_tool",
     api_key=os.getenv("GL_CONNECTORS_API_KEY"),
     token=os.getenv("GL_CONNECTORS_USER_TOKEN"),
@@ -47,11 +49,14 @@ github_mcp = MCP(
     config={"url": "https://connectors.glair.ai/github/mcp"},
 )
 
+# --- Skill ---
+github_skill = "https://github.com/github/awesome-copilot/tree/main/skills/github-issues"
+
 # --- Agent with API + Function Call + MCP + Skill (same task: list_issues) ---
 agent = Agent(
     name="aip_with_github_combined_connector",
     instruction="You are a helpful assistant.",
-    tools=[GitHubListIssuesTool(), glcon_tool],
+    tools=[github_api_connector_tool, github_function_call],
     mcps=[github_mcp],
     mcp_configs={
         github_mcp: {
@@ -62,7 +67,7 @@ agent = Agent(
             },
         }
     },
-    skills=["https://github.com/github/awesome-copilot/tree/main/skills/github-issues"],
+    skills=[github_skill],
     filesystem=LocalDiskConfig(
         base_directory="/tmp/agent_files",
         allow_execute=True,
