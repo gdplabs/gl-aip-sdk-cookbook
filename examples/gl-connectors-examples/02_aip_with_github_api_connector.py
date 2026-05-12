@@ -1,12 +1,15 @@
 import os
 from typing import Any
 
+from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
 from glaip_sdk.agents import Agent
 from langchain_core.tools import BaseTool
 
 from gl_connectors_sdk import GLConnectors
+
+load_dotenv()
 
 class GitHubListIssuesInput(BaseModel):
     owner: str = Field(..., description="The owner of the repository")
