@@ -8,5 +8,5 @@ dependencies = [
     "gl-connectors-sdk>=0.1.6",
     "glaip-sdk[local]>=0.8.25",
     "gl-connectors-tools-binary (>=0.0.8b1,<0.0.9)",
-    "aip-agents-binary>=0.6.64",
+    "aip-agents-binary>=0.6.68",
 ]
