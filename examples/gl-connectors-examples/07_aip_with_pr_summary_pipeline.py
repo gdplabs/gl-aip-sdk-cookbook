@@ -128,7 +128,10 @@ SKILL_PATH = "https://github.com/gdplabs/gl-aip-sdk-cookbook/tree/e/gl-connector
 # =============================================================================
 agent = Agent(
     name="aip_with_pr_summary_pipeline",
-    instruction="You are a helpful assistant.",
+    instruction=(
+        "You are a PR reporting assistant. For PR summary requests, follow the "
+        "'pr-monthly-summary' skill end to end — it owns the workflow and output format."
+    ),
     tools=[
         GoogleDriveUploadTool(),
         GetMonthDateRangeTool(),
