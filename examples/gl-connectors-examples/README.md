@@ -8,6 +8,16 @@ All scripts run against [`github/awesome-copilot`](https://github.com/github/awe
 
 - **Python**: `>=3.12, <3.13`
 - The `uv` package manager is recommended.
+- **Connector integrations**: After logging in to the **[GL Connectors Console](https://connectors.glair.ai/console)**, you must connect the **GitHub** and **Google Drive** integrations before any example will work.
+
+### Connecting Integrations
+
+The examples call connectors on behalf of *your* account, so each connector you use must have an active integration in the console first. Without this step the connector calls will fail (e.g. an unauthorized / missing-integration error).
+
+1. Log in to the **[GL Connectors Console](https://connectors.glair.ai/console)**.
+2. Open the **Integrations** section. You will see one card per connector — at minimum **Github** and **Google_drive**.
+3. For each of **Github** and **Google_drive**, click **Add New Integration** and complete the OAuth flow.
+4. Confirm each one shows an **Active** integration under *Your Integrations* before running the examples.
 
 ## Installation
 
@@ -16,6 +26,16 @@ This project manages dependencies using `pyproject.toml`. You can install them b
 ```bash
 uv sync
 ```
+
+## Running the Examples
+
+Every example must be run with `uv run`. For example, to run the first example:
+
+```bash
+uv run 01_github_api_connector.py
+```
+
+`uv run` executes the script inside this project's virtual environment, so the packages installed by `uv sync` — `glaip_sdk`, `gl_connectors_sdk`, `aip_agents`, and their dependencies — are carried alongside the script. Running the file with a bare `python ...` instead would use your global interpreter, where those packages are not available and the imports will fail. The `**Execution**` line under each example below already uses `uv run` for this reason.
 
 ## Environment Variables
 
@@ -51,6 +71,7 @@ Each script demonstrates a different integration style for the same underlying c
 | `04_aip_with_github_mcp_connector.py` | Remote MCP server hosted by GL Connectors | An `MCP` config block |
 | `05_aip_with_github_skills_connector.py` | External Skill definition + local filesystem | A skill URL + filesystem config |
 | `06_aip_with_github_combined_connector.py` | All of the above on a single agent | Everything, for comparison |
+| `07_aip_with_pr_summary_pipeline.py` | All four styles, each owning a *different* role | A surgical Drive uploader, Function Calling helpers, MCP, and a local skill |
 
 ### 1. `01_github_api_connector.py` — Direct GL Connectors API call
 **What it does:** Calls the GL Connectors `github / list_issues` operation directly through the `GLConnectors` SDK — no agent, no LLM, no tool wrapping. The cleanest possible view of what the connector returns. Use this when you just want to invoke a connector from your own code or to sanity-check credentials before plugging it into an agent.
@@ -81,3 +102,13 @@ Each script demonstrates a different integration style for the same underlying c
 
 The agent is prompted to list all issues, find the oldest one, and print its full data. Useful for debugging tool-selection behavior or comparing latencies between styles.
 **Execution:** `uv run 06_aip_with_github_combined_connector.py`
+
+### 7. `07_aip_with_pr_summary_pipeline.py` — Four integration styles, four distinct roles
+**What it does:** Runs an end-to-end pipeline where each integration style owns a **different** responsibility — the opposite of `06`. The query is `"Summarize PRs from gdplabs/gl-aip-sdk-cookbook within this month."` and the orchestration is driven by a local `example-skill/SKILL.md`. Each style is deliberately matched to the job it is best suited for:
+- **API (surgical)** — a custom LangChain tool that calls `GLConnectors.execute("google_drive", "create_file", ...)` with a `ConnectorFile` payload, uploading the report into the caller's My Drive root. *Why API here:* MCP cannot carry binary file uploads, so a direct API call is **necessary** for this step — and it also gives you precise control over the `ConnectorFile` payload and a deterministic result without exposing a broader tool surface to the LLM.
+- **Function Calling** — `get_month_date_range`, `write_temp_file`, and `delete_file` for date math and local file lifecycle the LLM otherwise can't do reliably. *Why Function Calling here:* these are small, deterministic, in-process operations with no remote service behind them, so a lightweight local tool is the simplest fit — no API call or MCP server is warranted.
+- **MCP** — the GitHub MCP server with `allowed_tools=["github_list_pull_requests"]` — locked to fetching PRs and nothing else. *Why MCP here:* the GitHub connector is already hosted as an MCP server, so there is no local tool code to write or maintain, and `allowed_tools` narrows the surface to exactly the one capability the pipeline needs.
+- **Skill (local path)** — `skills=["./example-skill"]` points at a sibling folder containing `SKILL.md`, which defines both the workflow (date window → list PRs → write CSV → upload to Drive → delete temp → respond) and the exact output format. *Why a Skill here:* the orchestration is a multi-step procedure plus an output contract — that is best expressed as instructions for the agent to follow, not as code.
+
+Use this when you want a worked example of composing the integration styles into a real workflow, and a reference for authoring a local `SKILL.md`.
+**Execution:** `uv run 07_aip_with_pr_summary_pipeline.py`
