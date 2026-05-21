@@ -8,6 +8,16 @@ All scripts run against [`github/awesome-copilot`](https://github.com/github/awe
 
 - **Python**: `>=3.12, <3.13`
 - The `uv` package manager is recommended.
+- **Connector integrations**: After logging in to the **[GL Connectors Console](https://connectors.glair.ai/console)**, you must connect the **GitHub** and **Google Drive** integrations before any example will work.
+
+### Connecting Integrations
+
+The examples call connectors on behalf of *your* account, so each connector you use must have an active integration in the console first. Without this step the connector calls will fail (e.g. an unauthorized / missing-integration error).
+
+1. Log in to the **[GL Connectors Console](https://connectors.glair.ai/console)**.
+2. Open the **Integrations** section. You will see one card per connector — at minimum **Github** and **Google_drive**.
+3. For each of **Github** and **Google_drive**, click **Add New Integration** and complete the OAuth flow.
+4. Confirm each one shows an **Active** integration under *Your Integrations* before running the examples.
 
 ## Installation
 
