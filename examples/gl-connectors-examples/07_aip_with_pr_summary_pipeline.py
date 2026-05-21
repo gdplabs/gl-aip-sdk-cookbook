@@ -118,7 +118,7 @@ github_mcp = MCP(
 # =============================================================================
 # Skill — local folder. The SKILL.md drives the orchestration + output format.
 # =============================================================================
-SKILL_PATH = "https://github.com/gdplabs/gl-aip-sdk-cookbook/tree/e/gl-connectors-example-all/examples/gl-connectors-examples/example-skill"
+SKILL_PATH = "https://github.com/gdplabs/gl-aip-sdk-cookbook/tree/main/examples/gl-connectors-examples/example-skill"
 
 # =============================================================================
 # Agent — each integration owns one distinct role in the pipeline:
