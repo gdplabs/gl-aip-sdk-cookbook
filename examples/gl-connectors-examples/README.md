@@ -51,7 +51,7 @@ Each script demonstrates a different integration style for the same underlying c
 | `04_aip_with_github_mcp_connector.py` | Remote MCP server hosted by GL Connectors | An `MCP` config block |
 | `05_aip_with_github_skills_connector.py` | External Skill definition + local filesystem | A skill URL + filesystem config |
 | `06_aip_with_github_combined_connector.py` | All of the above on a single agent | Everything, for comparison |
-| `07_aip_with_pr_summary_pipeline.py` | All four styles, each owning a *different* role | A surgical Drive uploader, system tools, MCP, and a local skill |
+| `07_aip_with_pr_summary_pipeline.py` | All four styles, each owning a *different* role | A surgical Drive uploader, Function Calling helpers, MCP, and a local skill |
 
 ### 1. `01_github_api_connector.py` — Direct GL Connectors API call
 **What it does:** Calls the GL Connectors `github / list_issues` operation directly through the `GLConnectors` SDK — no agent, no LLM, no tool wrapping. The cleanest possible view of what the connector returns. Use this when you just want to invoke a connector from your own code or to sanity-check credentials before plugging it into an agent.
@@ -84,11 +84,11 @@ The agent is prompted to list all issues, find the oldest one, and print its ful
 **Execution:** `uv run 06_aip_with_github_combined_connector.py`
 
 ### 7. `07_aip_with_pr_summary_pipeline.py` — Four integration styles, four distinct roles
-**What it does:** Runs an end-to-end pipeline where each integration style owns a **different** responsibility — the opposite of `06`. The query is `"Summarize PRs from gdplabs/gl-aip-sdk-cookbook within this month."` and the orchestration is driven by a local `example-skill/SKILL.md`:
-- **API (surgical)** — a custom LangChain tool that calls `GLConnectors.execute("google_drive", "create_file", ...)` with a `ConnectorFile` payload, uploading the report into the caller's My Drive root.
-- **System tools** — `get_month_date_range`, `write_temp_file`, and `delete_file` for date math and local file lifecycle the LLM otherwise can't do reliably.
-- **MCP** — the GitHub MCP server with `allowed_tools=["github_list_pull_requests"]` — locked to fetching PRs and nothing else.
-- **Skill (local path)** — `skills=["./example-skill"]` points at a sibling folder containing `SKILL.md`, which defines both the workflow (date window → list PRs → write CSV → upload to Drive → delete temp → respond) and the exact output format.
+**What it does:** Runs an end-to-end pipeline where each integration style owns a **different** responsibility — the opposite of `06`. The query is `"Summarize PRs from gdplabs/gl-aip-sdk-cookbook within this month."` and the orchestration is driven by a local `example-skill/SKILL.md`. Each style is deliberately matched to the job it is best suited for:
+- **API (surgical)** — a custom LangChain tool that calls `GLConnectors.execute("google_drive", "create_file", ...)` with a `ConnectorFile` payload, uploading the report into the caller's My Drive root. *Why API here:* MCP cannot carry binary file uploads, so a direct API call is **necessary** for this step — and it also gives you precise control over the `ConnectorFile` payload and a deterministic result without exposing a broader tool surface to the LLM.
+- **Function Calling** — `get_month_date_range`, `write_temp_file`, and `delete_file` for date math and local file lifecycle the LLM otherwise can't do reliably. *Why Function Calling here:* these are small, deterministic, in-process operations with no remote service behind them, so a lightweight local tool is the simplest fit — no API call or MCP server is warranted.
+- **MCP** — the GitHub MCP server with `allowed_tools=["github_list_pull_requests"]` — locked to fetching PRs and nothing else. *Why MCP here:* the GitHub connector is already hosted as an MCP server, so there is no local tool code to write or maintain, and `allowed_tools` narrows the surface to exactly the one capability the pipeline needs.
+- **Skill (local path)** — `skills=["./example-skill"]` points at a sibling folder containing `SKILL.md`, which defines both the workflow (date window → list PRs → write CSV → upload to Drive → delete temp → respond) and the exact output format. *Why a Skill here:* the orchestration is a multi-step procedure plus an output contract — that is best expressed as instructions for the agent to follow, not as code.
 
 Use this when you want a worked example of composing the integration styles into a real workflow, and a reference for authoring a local `SKILL.md`.
 **Execution:** `uv run 07_aip_with_pr_summary_pipeline.py`

@@ -19,6 +19,7 @@ load_dotenv()
 # API (Surgical) — Upload a local file to Google Drive via GL Connectors SDK
 # Hits POST /connectors/google_drive/create_file with a ConnectorFile payload.
 # No `parent_folder_id` is sent, so the file lands in the user's My Drive root.
+# A direct API call is necessary here: MCP cannot carry binary file uploads.
 # =============================================================================
 class GoogleDriveUploadInput(BaseModel):
     path: str = Field(..., description="Absolute path of the local file to upload.")
@@ -51,7 +52,7 @@ class GoogleDriveUploadTool(BaseTool):
 
 
 # =============================================================================
-# Tool calling — date math + local filesystem helpers the LLM can't do reliably
+# Function Calling — date math + local filesystem helpers the LLM can't do reliably
 # =============================================================================
 class _EmptyInput(BaseModel):
     pass
@@ -121,10 +122,10 @@ SKILL_PATH = "https://github.com/gdplabs/gl-aip-sdk-cookbook/tree/e/gl-connector
 
 # =============================================================================
 # Agent — each integration owns one distinct role in the pipeline:
-#   API (surgical) -> upload to Google Drive
-#   System tools   -> date range, temp file write/delete
-#   MCP            -> fetch PRs (only)
-#   Skill          -> orchestrates the flow and defines the output format
+#   API (surgical)   -> upload to Google Drive
+#   Function Calling -> date range, temp file write/delete
+#   MCP              -> fetch PRs (only)
+#   Skill            -> orchestrates the flow and defines the output format
 # =============================================================================
 agent = Agent(
     name="aip_with_pr_summary_pipeline",
