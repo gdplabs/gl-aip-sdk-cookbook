@@ -17,6 +17,16 @@ This project manages dependencies using `pyproject.toml`. You can install them b
 uv sync
 ```
 
+## Running the Examples
+
+Every example must be run with `uv run`. For example, to run the first example:
+
+```bash
+uv run 01_github_api_connector.py
+```
+
+`uv run` executes the script inside this project's virtual environment, so the packages installed by `uv sync` — `glaip_sdk`, `gl_connectors_sdk`, `aip_agents`, and their dependencies — are carried alongside the script. Running the file with a bare `python ...` instead would use your global interpreter, where those packages are not available and the imports will fail. The `**Execution**` line under each example below already uses `uv run` for this reason.
+
 ## Environment Variables
 
 Before running the examples, you need to configure your environment variables. Copy the `.env.example` file to `.env`:
