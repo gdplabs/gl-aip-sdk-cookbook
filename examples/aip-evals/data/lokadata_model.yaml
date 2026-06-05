@@ -1,0 +1,63 @@
+id: tc-aceh-best-ranking-model
+description: Verify the agent correctly answers the Aceh best ranking query using LLM judge.
+input:
+  message: Daerah mana yang ranking nasionalnya terbaik di Aceh?
+metrics:
+  - name: completeness
+    type: model
+    threshold: 0.7
+    model:
+      name: openai/gpt-4o-mini
+      credentials: env:OPENAI_API_KEY
+    reference: >
+      The response should state that Kabupaten Aceh Utara has the best
+      national ranking (Peringkat Nasional) in Provinsi Aceh with rank 162.
+  - name: tool_correctness
+    type: model
+    threshold: 0.7
+    model:
+      name: openai/gpt-4o-mini
+      credentials: env:OPENAI_API_KEY
+    reference:
+      expected_tools:
+        - name: bosa_sql_query_tool
+          description: Inspect available tables in the database
+          input_parameters:
+            request:
+              query: >
+                SELECT table_name
+                FROM information_schema.tables
+                WHERE table_schema='public'
+                ORDER BY table_name;
+        - name: bosa_sql_query_tool
+          description: Inspect columns of pdrb_adhk_2024 table
+          input_parameters:
+            request:
+              query: >
+                SELECT column_name, data_type
+                FROM information_schema.columns
+                WHERE table_schema='public' AND table_name='pdrb_adhk_2024'
+                ORDER BY ordinal_position;
+        - name: bosa_sql_query_tool
+          description: Get the latest date in the dataset
+          input_parameters:
+            request:
+              query: >
+                SELECT MAX(tanggal) AS latest_tanggal
+                FROM public.pdrb_adhk_2024;
+        - name: bosa_sql_query_tool
+          description: Find the region with the best national ranking in Aceh
+          input_parameters:
+            request:
+              query: >
+                SELECT tanggal, provinsi, kabupaten, peringkat_nasional
+                FROM public.pdrb_adhk_2024
+                WHERE provinsi ILIKE 'Aceh'
+                AND tanggal = (SELECT MAX(tanggal) FROM public.pdrb_adhk_2024)
+                ORDER BY peringkat_nasional ASC NULLS LAST
+                LIMIT 1;
+    options:
+      should_exact_match: false
+      should_consider_ordering: false
+      evaluation_params:
+        - input_parameters
