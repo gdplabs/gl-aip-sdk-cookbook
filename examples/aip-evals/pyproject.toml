@@ -1,5 +1,5 @@
 [project]
-name = "aip-evals-local"
+name = "aip-evals"
 version = "0.1.0"
 description = "Demonstrate AIP evals module — evaluate local agents using deterministic, python, and model metrics"
 requires-python = ">=3.12,<3.13"

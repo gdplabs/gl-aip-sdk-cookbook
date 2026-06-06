@@ -7,6 +7,7 @@ __pycache__/
 *.pyo
 *.pyd
 .python-version
+.deepeval
 
 # Virtual environment
 venv/

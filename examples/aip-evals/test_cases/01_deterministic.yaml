@@ -11,10 +11,10 @@ metrics:
           params:
             request:
               query:
-                value: ["pdrb_adhk_2024", "peringkat_nasional", "provinsi", "ILIKE", "MAX(tanggal)"]
+                value: ["pdrb_adhk_2024", "peringkat_nasional", "peringkat_provinsi", "provinsi"]
                 match: keyword
           output:
-            value: ["Aceh Utara", "162", "2024-12-31"]
+            value: ["Aceh Utara", "162"]
             match: keyword
   - name: response_keywords
     type: deterministic

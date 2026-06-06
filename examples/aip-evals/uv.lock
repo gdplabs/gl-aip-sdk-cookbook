@@ -218,7 +218,7 @@ local = [
 ]
 
 [[package]]
-name = "aip-evals-local"
+name = "aip-evals"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

@@ -1,5 +1,14 @@
 """02_model_eval.py — Model (LLM Judge) Metric Example.
 
+Uses an LLM as a judge to evaluate the agent via two model-based metrics:
+- completeness: evaluates the final response against the expected answer.
+- groundedness: evaluates whether the response is supported by the source/context.
+
+A model-based approach (completeness) is chosen over keyword-based metrics because the
+agent's responses contain monetary values that can be formatted differently
+(e.g., 18060.62 can be written as 18.060,62, 18,060.62, etc.), making
+exact keyword matching unreliable.
+
 Requires OPENAI_API_KEY.
 Run: uv run python 02_model_eval.py
 """
@@ -23,7 +32,7 @@ def main() -> None:
     evaluator = AgentEvaluator(name="Lokadata Model Eval", version="1.0.0")
     report = evaluator.evaluate(
         agent=lokadata_agent,
-        test_cases="data/lokadata_model.yaml",
+        test_cases="test_cases/02_mixed.yaml",
     )
     print_json(report)
 
