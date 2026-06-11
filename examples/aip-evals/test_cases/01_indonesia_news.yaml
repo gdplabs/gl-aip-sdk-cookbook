@@ -1,0 +1,32 @@
+id: tc-indonesia-2026-news
+description: Verify the agent returns exactly 5 news items from Indonesia in 2026 with source links, grounded in the web_search results.
+input:
+  message: Show 5 news from Indonesia in 2026
+metrics:
+  - name: tool_calls
+    type: deterministic
+    reference:
+      tool_calls:
+        - tool: web_search
+          params:
+            query:
+              value: ["indonesia", "2026"]
+              match: keyword
+  - name: response_keywords
+    type: deterministic
+    reference:
+      keywords: ["indonesia", "news", "2026"]
+  - name: completeness
+    type: model
+    threshold: 0.5
+    model:
+      name: openai/gpt-4o-mini
+      credentials: env:OPENAI_API_KEY
+    reference: "The final response must present exactly 5 distinct news items, each with a URL link, and all items must be from Indonesia in 2026."
+  - name: groundedness
+    type: model
+    threshold: 0.5
+    model:
+      name: openai/gpt-4o-mini
+      credentials: env:OPENAI_API_KEY
+    reference: "All factual claims (titles, links, dates) in the final response must be traceable to the web_search tool's retrieved results."

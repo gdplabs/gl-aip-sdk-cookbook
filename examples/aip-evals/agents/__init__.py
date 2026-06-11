@@ -1,5 +1,5 @@
-"""Lokadata Benchmark - Agents module."""
+"""AIP Evals Cookbook - Agents module."""
 
-from agents.lokadata_agent import lokadata_agent
+from agents.research_agent import research_agent
 
-__all__ = ["lokadata_agent"]
+__all__ = ["research_agent"]
