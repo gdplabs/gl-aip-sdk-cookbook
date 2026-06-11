@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Demonstrate AIP evals module — evaluate local agents using deterministic, python, and model metrics"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "glaip-sdk[local,evals]>=0.8.36",
+    "glaip-sdk[local,evals]>=0.8.40",
     "python-dotenv>=1.0.0",
     "pyyaml>=6.0.0",
     "psycopg2-binary>=2.9.0",

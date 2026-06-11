@@ -230,7 +230,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "glaip-sdk", extras = ["local", "evals"], specifier = ">=0.8.36" },
+    { name = "glaip-sdk", extras = ["local", "evals"], specifier = ">=0.8.40" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "pyyaml", specifier = ">=6.0.0" },
@@ -1268,7 +1268,7 @@ wheels = [
 
 [[package]]
 name = "glaip-sdk"
-version = "0.8.36"
+version = "0.8.40"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -1285,9 +1285,9 @@ dependencies = [
     { name = "rich" },
     { name = "textual" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c1/8b/2d662f543dbb4d08a18d31f528db6fe4acf2cdb2019601da0810378e5925/glaip_sdk-0.8.36.tar.gz", hash = "sha256:4b18f793c750b3dc4960848a4c9e6511ef63e3f6766d6872e9671c6bd1db6915", size = 653068, upload-time = "2026-06-05T03:31:53.402Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/58/45/6cfa33fc41749b0b77cc7d5ef9d76a6a3aa873a4e614283ed402af2d8366/glaip_sdk-0.8.40.tar.gz", hash = "sha256:a81950d64dd19c2bbf3de1a63414ca3a21a1ec2e25fdd665ee498045ae71b2a2", size = 657836, upload-time = "2026-06-10T05:57:03.007Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fd/3f/ecf28631ecadb7c60b734d07dc0f5879873f72a93378a301fec0e799912d/glaip_sdk-0.8.36-py3-none-any.whl", hash = "sha256:2519816ce24261e01fc9f46ce54fed1b529156537a17cf25e42fe02d5440601d", size = 793684, upload-time = "2026-06-05T03:31:51.182Z" },
+    { url = "https://files.pythonhosted.org/packages/17/57/58fedbd5eaec21271904688cdb13ba1e7d32672c702e60911df45684d4f1/glaip_sdk-0.8.40-py3-none-any.whl", hash = "sha256:056fefa1f1029036d0a9feeb7cbe8e4d170ffe631ee45c246970b0095dceffab", size = 798128, upload-time = "2026-06-10T05:57:00.704Z" },
 ]
 
 [package.optional-dependencies]

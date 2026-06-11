@@ -32,7 +32,7 @@ def main() -> None:
     evaluator = AgentEvaluator(name="Lokadata Model Eval", version="1.0.0")
     report = evaluator.evaluate(
         agent=lokadata_agent,
-        test_cases="test_cases/02_mixed.yaml",
+        test_cases="test_cases/02_model.yaml",
     )
     print_json(report)
 
