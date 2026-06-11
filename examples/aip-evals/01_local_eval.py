@@ -34,7 +34,7 @@ def main() -> None:
     evaluator = AgentEvaluator(name="Research Agent Local Eval", version="1.0.0")
     report = evaluator.evaluate(
         agent=research_agent,
-        test_cases="test_cases/01_indonesia_news.yaml",
+        test_cases="test_cases",
         target_mode="local",
     )
     print_json(report)
