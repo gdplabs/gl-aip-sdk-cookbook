@@ -1,59 +1,96 @@
-# AIP Evals — Lokadata Agent Evaluation Demo
+# AIP Evals — Research Agent Evaluation Demo
 
-Demonstrates how to evaluate the Lokadata PDRB data analyst agent using the AIP evals module.
+Demonstrates how to evaluate an AIP agent using the `glaip_sdk.evals` module,
+with both **local** and **hosted** execution modes. The agent is a simple
+news research agent backed by a single mocked `web_search` tool so the cookbook
+can be run without any external API dependencies.
 
 ## Quickstart
 
 ```bash
 uv sync
 cp .env.example .env
-uv run python 01_deterministic_eval.py
+# Fill in OPENAI_API_KEY (and optionally AIP_API_URL / AIP_API_KEY)
+
+uv run python 01_local_eval.py
 ```
 
 ## Eval Scripts
 
-| Script | Metric Type | Requires |
-|--------|------------|----------|
-| `01_deterministic_eval.py` | Deterministic | — |
-| `02_model_eval.py` | Model (LLM judge) | `OPENAI_API_KEY` |
+| Script | Execution | Description | Requires |
+|--------|-----------|-------------|----------|
+| `01_local_eval.py` | Local (in-process) | Runs the agent and eval end-to-end on this machine | `OPENAI_API_KEY` |
+| `02_remote_eval.py` | Hosted (deployed) | Deploys the agent to the AIP platform, then runs the eval | `OPENAI_API_KEY`, `AIP_API_URL`, `AIP_API_KEY` |
+
+Both scripts use the same test case (`test_cases/01_indonesia_news.yaml`) and
+the same four metrics, so you can compare how the same eval behaves across
+local and hosted execution.
+
+## The Test Case
+
+A single test case (`tc-indonesia-2026-news`) combines deterministic and
+model-based metrics on the query `"Show 5 news from Indonesia in 2026"`:
+
+- **tool_calls** (deterministic) — verifies the agent calls `web_search` with
+  a query containing "indonesia" and "2026".
+- **response_keywords** (deterministic) — checks the response contains
+  `indonesia`, `news`, and `2026`.
+- **completeness** (model / LLM judge) — verifies the response contains
+  exactly 5 distinct news items, each with a URL link, all from Indonesia 2026.
+- **groundedness** (model / LLM judge) — verifies all claims (titles, links,
+  dates) are traceable to the `web_search` tool's retrieved results.
 
 ## Folder Structure
 
 ```
-aip-evals-local/
-├── 01_deterministic_eval.py
-├── 02_model_eval.py
+aip-evals/
+├── 01_local_eval.py
+├── 02_remote_eval.py
 ├── _shared.py
 ├── agents/
-│   └── lokadata_agent.py
-├── data/
-│   ├── lokadata_deterministic.yaml
-│   └── lokadata_model.yaml
+│   ├── __init__.py
+│   └── research_agent.py
+├── tools/
+│   ├── __init__.py
+│   └── web_search_tool.py
+├── test_cases/
+│   └── 01_indonesia_news.yaml
 ├── pyproject.toml
 └── .env.example
 ```
 
-## Writing Test Cases
+## The Agent
 
-**Deterministic:**
+`agents/research_agent.py` defines a single `Agent` with a custom LangChain
+`BaseTool` (`WebSearchTool`) that returns a fixed set of mocked search results.
+This keeps the cookbook self-contained — no real search API needed.
+
+## Adding More Test Cases
+
+Add a new YAML file under `test_cases/` and reference it from an eval script.
+Each YAML file is one or more test cases with `input.message` and a list of
+`metrics`.
+
+**Deterministic metric example:**
 ```yaml
 - name: tool_calls
   type: deterministic
   reference:
     tool_calls:
-      - tool: bosa_sql_query_tool
-        output:
-          match: keyword
-          value: ["PDRB"]
+      - tool: web_search
+        params:
+          query:
+            match: keyword
+            value: ["indonesia"]
 ```
 
-**Model (LLM judge):**
+**Model (LLM judge) metric example:**
 ```yaml
 - name: completeness
   type: model
-  threshold: 0.7
+  threshold: 0.5
   model:
-    name: openai/gpt-4o-mini
+    name: openai/gpt-5.4
     credentials: env:OPENAI_API_KEY
-  reference: The expected response text.
+  reference: The final response must present exactly 5 news items with URL links.
 ```
