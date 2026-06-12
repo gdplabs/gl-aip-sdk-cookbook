@@ -1,8 +1,8 @@
 # PR 9 Review Comments
 
 ## Comments Summary
-- **Open** 4
-- **Fixed** 2
+- **Open** 3
+- **Fixed** 3
 - **Wont Fixed** 0
 - **Total** 6
 
@@ -25,10 +25,10 @@
 - **File:** `README.md`
 - **Line:** 11
 - **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#pullrequestreview-4482057730
-- **Status:** `OPEN`
+- **Status:** `FIXED`
 - **Priority:** Low
 - **Summary:** The new `examples/aip-evals/` cookbook should be linked from the root repository README's examples list so users can discover it from the landing page.
-- **Fix:**
+- **Fix:** Added `aip-evals` to the "Local-run flows" list in the root README's Examples section.
 
 ### 3. [M-1] Misleading "no external API dependencies" claim
 - **Author:** raychrisgdp
