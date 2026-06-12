@@ -1,8 +1,8 @@
 # PR 9 Review Comments
 
 ## Comments Summary
-- **Open** 3
-- **Fixed** 3
+- **Open** 2
+- **Fixed** 4
 - **Wont Fixed** 0
 - **Total** 6
 
@@ -35,10 +35,10 @@
 - **File:** `examples/aip-evals/README.md`
 - **Line:** 3
 - **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3400373650
-- **Status:** `OPEN`
+- **Status:** `FIXED`
 - **Priority:** Medium
 - **Summary:** The README intro says the cookbook "can be run without any external API dependencies" but the quickstart and YAML test case require `OPENAI_API_KEY` for model-based metrics. The claim should be narrowed to say the mocked search tool avoids a real search API, while model-based evals still require OpenAI credentials.
-- **Fix:**
+- **Fix:** Narrowed the intro to clarify the no-API claim applies only to the mocked search tool, and added a note that model-based metrics still require `OPENAI_API_KEY`.
 
 ### 4. [M-2] Python 3.12 constraint not documented
 - **Author:** raychrisgdp

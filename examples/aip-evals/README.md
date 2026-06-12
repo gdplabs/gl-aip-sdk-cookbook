@@ -2,8 +2,9 @@
 
 Demonstrates how to evaluate an AIP agent using the `glaip_sdk.evals` module,
 with both **local** and **hosted** execution modes. The agent is a simple
-news research agent backed by a single mocked `web_search` tool so the cookbook
-can be run without any external API dependencies.
+news research agent backed by a single mocked `web_search` tool — no
+real search API is needed. Note: model-based metrics (LLM judge) still
+require `OPENAI_API_KEY`.
 
 ## Quickstart
 
