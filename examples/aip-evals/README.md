@@ -6,6 +6,11 @@ news research agent backed by a single mocked `web_search` tool — no
 real search API is needed. Note: model-based metrics (LLM judge) still
 require `OPENAI_API_KEY`.
 
+## Prerequisites
+
+- Python 3.12 (the AIP SDK's native binary dependencies ship `cp312` wheels
+  only, so this cookbook cannot be run on 3.11)
+
 ## Quickstart
 
 ```bash

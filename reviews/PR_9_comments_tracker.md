@@ -1,8 +1,8 @@
 # PR 9 Review Comments
 
 ## Comments Summary
-- **Open** 2
-- **Fixed** 4
+- **Open** 1
+- **Fixed** 5
 - **Wont Fixed** 0
 - **Total** 6
 
@@ -45,10 +45,10 @@
 - **File:** `examples/aip-evals/pyproject.toml`
 - **Line:** 5
 - **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3400373656
-- **Status:** `OPEN`
+- **Status:** `FIXED`
 - **Priority:** Medium
 - **Summary:** `pyproject.toml` requires `requires-python = ">=3.12"`, but the repo root README says users can install Python 3.11 or 3.12. The cookbook should either relax to 3.11 if evals support it, or explicitly document "Requires Python 3.12" in the cookbook's README.
-- **Fix:**
+- **Fix:** Verified `gllm-core-binary 0.4.28` only ships `cp312` wheels, so the 3.12 constraint is forced by the SDK's native binary deps. Added a "Prerequisites" section to the cookbook README explicitly calling out Python 3.12.
 
 ### 5. [M-3] Unused `psycopg2-binary` and outdated project description
 - **Author:** raychrisgdp
