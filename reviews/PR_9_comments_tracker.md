@@ -1,8 +1,8 @@
 # PR 9 Review Comments
 
 ## Comments Summary
-- **Open** 1
-- **Fixed** 5
+- **Open** 0
+- **Fixed** 6
 - **Wont Fixed** 0
 - **Total** 6
 
@@ -55,10 +55,10 @@
 - **File:** `examples/aip-evals/pyproject.toml`
 - **Line:** 10
 - **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3400373660
-- **Status:** `OPEN`
+- **Status:** `FIXED`
 - **Priority:** Medium
 - **Summary:** `psycopg2-binary` is listed as a dependency but is not imported or used by the research-agent example. The project description also mentions "python" metrics even though the test case only uses deterministic and model metrics. This is leftover baggage from the older PDRB scope.
-- **Fix:**
+- **Fix:** Removed `psycopg2-binary` from `pyproject.toml` dependencies and updated the project description to "Demonstrate AIP evals module — evaluate local and hosted agents using deterministic and model metrics". Refreshed `uv.lock` to drop the unused package.
 
 ### 6. [Q-1] PR body outdated (describes Lokadata/PDRB, diff is research agent)
 - **Author:** raychrisgdp
