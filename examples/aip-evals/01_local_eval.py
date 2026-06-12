@@ -21,12 +21,15 @@ from __future__ import annotations
 
 import os
 
+from dotenv import load_dotenv
+
 from _shared import print_json, warn
 from agents.research_agent import research_agent
 from glaip_sdk.evals import AgentEvaluator
 
 
 def main() -> None:
+    load_dotenv()
     if not os.getenv("OPENAI_API_KEY"):
         warn("Skipping: OPENAI_API_KEY is not set.")
         return
