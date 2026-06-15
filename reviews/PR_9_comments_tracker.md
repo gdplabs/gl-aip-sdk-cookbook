@@ -1,10 +1,10 @@
 # PR 9 Review Comments
 
 ## Comments Summary
-- **Open** 0
+- **Open** 5
 - **Fixed** 6
 - **Wont Fixed** 0
-- **Total** 6
+- **Total** 11
 
 --
 
@@ -69,3 +69,53 @@
 - **Priority:** Medium
 - **Summary:** The live PR description at review time described the old Lokadata/PDRB cookbook with three eval scripts, but the diff adds the new research-agent cookbook with two eval scripts. Questioned whether the description needs updating or the wrong files were replaced.
 - **Fix:** PR description was updated during the session to reflect the new research-agent scope.
+
+### 7. [D-1] Missing docstring in 01_local_eval.py
+- **Author:** chen-gdp
+- **File:** `examples/aip-evals/01_local_eval.py`
+- **Line:** 31
+- **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3407463096
+- **Status:** `OPEN`
+- **Priority:** Medium
+- **Summary:** Reminds to add/verify the module docstring for `01_local_eval.py`.
+- **Fix:**
+
+### 8. [D-2] Missing docstring in 02_remote_eval.py
+- **Author:** chen-gdp
+- **File:** `examples/aip-evals/02_remote_eval.py`
+- **Line:** 31
+- **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3407463359
+- **Status:** `OPEN`
+- **Priority:** Medium
+- **Summary:** Same reminder — add/verify the module docstring for `02_remote_eval.py`.
+- **Fix:**
+
+### 9. [C-1] Add pre-commit.yaml for formatting
+- **Author:** chen-gdp
+- **File:** `examples/aip-evals/agents/__init__.py`
+- **Line:** —
+- **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3407464163
+- **Status:** `OPEN`
+- **Priority:** Medium
+- **Summary:** Suggests adding a `pre-commit.yaml` configuration file to the parent `examples/` folder so all code is auto-formatted consistently.
+- **Fix:**
+
+### 10. [C-2] Remove reviews tracker from PR
+- **Author:** chen-gdp
+- **File:** `reviews/PR_9_comments_tracker.md`
+- **Line:** —
+- **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3407464361
+- **Status:** `OPEN`
+- **Priority:** Medium
+- **Summary:** Notes that the reviews tracker doc should not be pushed to the PR — it's an internal working artifact, not part of the cookbook.
+- **Fix:**
+
+### 11. [C-3] Add gitbook reference to README
+- **Author:** chen-gdp
+- **File:** `examples/aip-evals/README.md`
+- **Line:** 102
+- **URL:** https://github.com/gdplabs/gl-aip-sdk-cookbook/pull/9#discussion_r3407465158
+- **Status:** `OPEN`
+- **Priority:** Low
+- **Summary:** Suggests adding a reference/link to the GL AIP gitbook for more information about the evals module.
+- **Fix:**
