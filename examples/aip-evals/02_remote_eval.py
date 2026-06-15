@@ -29,6 +29,12 @@ from glaip_sdk.evals import AgentEvaluator
 
 
 def main() -> None:
+    """Deploy the agent, run the eval against the hosted version, and print
+    the JSON report.
+
+    Skips with a warning if the required env vars are not set in the
+    environment or the local ``.env`` file.
+    """
     load_dotenv()
     if not os.getenv("OPENAI_API_KEY"):
         warn("Skipping: OPENAI_API_KEY is not set.")

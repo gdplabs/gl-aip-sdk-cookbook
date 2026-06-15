@@ -100,3 +100,10 @@ Each YAML file is one or more test cases with `input.message` and a list of
     credentials: env:OPENAI_API_KEY
   reference: The final response must present exactly 5 news items with URL links.
 ```
+
+## More Information
+
+- [Agent Evaluations Guide](https://gdplabs.gitbook.io/sdk/gl-aip-ai-agent-package/guides/agent-evaluations) — full reference for the evals module, metric types, and report format
+- [GL AIP Python SDK Reference](https://gdplabs.gitbook.io/gl-aip/getting-started/quick-start-guide/python-sdk) — `AgentEvaluator` API
+- [GL AIP Getting Started](https://gdplabs.gitbook.io/gl-aip/getting-started/install-and-configure) — installation and configuration
+
