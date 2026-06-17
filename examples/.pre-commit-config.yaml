@@ -1,7 +1,7 @@
 # Pre-commit configuration shared by all examples under ./examples.
-# Install once at the repo root:
+# Run from the examples/ directory:
+#   cd examples
 #   uvx pre-commit install
-# Run on demand:
 #   uvx pre-commit run --all-files
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit

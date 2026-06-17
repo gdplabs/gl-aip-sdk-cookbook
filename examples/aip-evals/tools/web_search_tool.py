@@ -11,102 +11,54 @@ from pydantic import BaseModel, Field
 
 MOCKED_SEARCH_RESULTS = [
     {
-        "title": "The Jakarta Post - Still bold, fiercely independent",
-        "link": "https://www.thejakartapost.com/",
-        "snippet": (
-            "Indonesia · Politics. Prosecutors reject Nadiem's defense plea in "
-            "Chromebook corruption case ; Business · Economy. Pertamina hikes "
-            "Pertamax prices by 32% amid high ..."
-        ),
-        "position": 1,
-    },
-    {
-        "title": "LIST OF REGIONS HIT BY HEAVY RAIN ON THURSDAY, JUNE 11 ...",
+        "title": "LIST OF REGIONS HIT BY HEAVY RAIN ON THURSDAY, JUNE 11, 2026",
         "link": "https://www.youtube.com/watch?v=N0E5Z34r9KM",
         "snippet": (
-            "... Indonesia on Thursday (June 11, 2026). According to Kompas.com ... "
-            "news app on the Play Store or App Store for a new experience. LIST OF ..."
+            "Indonesia on Thursday (June 11, 2026). According to Kompas.com, "
+            "the agency has warned residents in low-lying areas to remain on alert."
         ),
-        "date": "19 hours ago",
-        "position": 2,
-    },
-    {
-        "title": "Indonesia National Holidays and Collective Leave Days 2026",
-        "link": "https://www.bankofchina.co.id/m/en-id/service/information/latest-news/2025/public-holiday-2026.html",
-        "snippet": (
-            "Indonesia National Holidays and Collective Leave Days 2026 ; "
-            "1 June. Monday. Pancasila Day ; 16 June. Tuesday. Islamic New Year 1448 H ; "
-            "17 August. Monday."
-        ),
-        "position": 3,
-    },
-    {
-        "title": "ANTARA News: Latest Indonesia News",
-        "link": "https://en.antaranews.com/",
-        "snippet": (
-            "Trade Ministry to route all coal exports through PT DSI by 2027 · "
-            "Prabowo says Indonesia remains open to foreign investors · "
-            "Prabowo defends foreign trips, cites ..."
-        ),
-        "position": 4,
+        "date": "June 11, 2026",
+        "position": 1,
     },
     {
         "title": "5 stories you might have missed, June 11, 2026 | The Straits Times",
         "link": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-june-11-2026",
         "snippet": (
             "Indonesia floods wipe out 7% of rare orang utans. PHOTO: AFP. "
-            "Deadly floods and landslides in Indonesia's Sumatra in 2025 wiped ..."
+            "Deadly floods and landslides in Indonesia's Sumatra in 2026 wiped out a large share of the species' habitat."
         ),
-        "date": "7 hours ago",
-        "position": 5,
+        "date": "June 11, 2026",
+        "position": 2,
     },
     {
         "title": "Laos, Indonesia deepen bilateral ties during official visit",
         "link": "https://asianews.network/laos-indonesia-deepen-bilateral-ties-during-official-visit/",
         "snippet": (
             "Laos, Indonesia deepen bilateral ties during official visit. "
-            "The visit was aimed at further enhancing the longstanding friendship ..."
+            "The visit was aimed at further enhancing the longstanding friendship between the two Southeast Asian nations."
         ),
         "date": "May 7, 2026",
-        "position": 6,
-    },
-    {
-        "title": "Indonesia - AP News",
-        "link": "https://apnews.com/hub/indonesia",
-        "snippet": (
-            "Indonesian court finds 4 military members guilty of acid attack on activist, "
-            "sends them to prison · Indonesia arrests former nutrition agency head and officials ..."
-        ),
-        "position": 7,
+        "position": 3,
     },
     {
         "title": "Indonesia Volcano Erupts, Forcing Airport to Close",
         "link": "https://english.aawsat.com/varieties/5280661-indonesia-volcano-erupts-forcing-airport-close",
         "snippet": (
-            "Mount Lewotobi Laki-Laki on Flores Island erupted at 11:15 am (0315 GMT), "
-            "sending volcanic material 2.5 kilometers (1.6 miles) into the air, the ..."
+            "Mount Lewotobi Laki-Laki on Flores Island erupted at 11:15 am (0315 GMT) on May 25, 2026, "
+            "sending volcanic material 2.5 kilometers (1.6 miles) into the air, the country's disaster agency said."
         ),
-        "position": 8,
+        "date": "May 25, 2026",
+        "position": 4,
     },
     {
-        "title": "June Mission To Gaza: Indonesia Confirms Humanitarian-only ...",
-        "link": "https://www.i24news.tv/en/news/middle-east/palestinian-territories/artc-june-mission-to-gaza-indonesia-confirms-humanitarian-only-deployment",
+        "title": "Indonesia's Prabowo says economy grew 5.1% in Q1 2026",
+        "link": "https://en.antaranews.com/news/indonesia-q1-2026-gdp",
         "snippet": (
-            "Indonesia has confirmed that the forces it plans to deploy in the Gaza Strip "
-            "will not engage in combat, emphasizing that their role will ..."
+            "President Prabowo Subianto announced on May 5, 2026 that Indonesia's economy grew 5.1% in the first quarter, "
+            "driven by strong domestic consumption and a recovery in tourism."
         ),
-        "date": "Feb 16, 2026",
-        "position": 9,
-    },
-    {
-        "title": "The Latest on Southeast Asia: Indonesia joins BRICS - CSIS",
-        "link": "https://www.csis.org/blogs/latest-southeast-asia/latest-southeast-asia-indonesia-joins-brics",
-        "snippet": (
-            "On January 7, Indonesia became the first Southeast Asian nation to formally join "
-            "BRICS, an intergovernmental bloc consisting of countries from the Global South."
-        ),
-        "date": "Jan 16, 2025",
-        "position": 10,
+        "date": "May 5, 2026",
+        "position": 5,
     },
 ]
 
