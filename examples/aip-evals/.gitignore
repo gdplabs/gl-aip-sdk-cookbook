@@ -1,0 +1,22 @@
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+.deepeval
+
+# Virtual environment
+venv/
+env/
+.venv
+
+# Eval outputs
+eval_results/
+
+# IDE
+.vscode/
+.idea/
