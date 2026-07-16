@@ -1,0 +1,20 @@
+[project]
+name = "skills-local-path"
+version = "0.1.0"
+description = "Skills Local Path — Run agents with locally uploaded skills to avoid GitHub rate limits"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "glaip-sdk[local]",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
