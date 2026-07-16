@@ -105,6 +105,7 @@ python <example_file>.py
 | **Basic Examples** | | | |
 | `main.py` | `uv run python main.py` | Basic local agent execution with greeting tool | `OPENAI_API_KEY` |
 | `main_with_chat_history.py` | `uv run python main_with_chat_history.py` | Agent with chat history context | `OPENAI_API_KEY` |
+| `main_with_multi_turn_chat.py` | `uv run python main_with_multi_turn_chat.py` | Runs a multi-turn chat with shared conversation history | `OPENAI_API_KEY` |
 | `main_with_local_files.py` | `uv run python main_with_local_files.py` | Agent with local file access | `OPENAI_API_KEY` |
 | `main_with_docproc_pdf.py` | `uv run python main_with_docproc_pdf.py` | Agent with PDF document processing (PDFReaderTool) | `OPENAI_API_KEY` |
 | **Configuration Examples** | | | |
