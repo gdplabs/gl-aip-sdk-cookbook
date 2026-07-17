@@ -19,6 +19,8 @@ When agents load skills directly from remote GitHub repositories, they may exper
 
 ## Quick Start
 
+> **Note:** Run all commands from this directory. `Skill.from_path(".agents/skills/code-reviewer")` resolves relative to the current working directory.
+
 ```bash
 # 1. Copy and configure environment
 cp .env.example .env
