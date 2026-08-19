@@ -16,6 +16,7 @@ env/
 
 # Eval outputs
 eval_results/
+output/
 
 # IDE
 .vscode/

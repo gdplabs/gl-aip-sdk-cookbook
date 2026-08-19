@@ -1,0 +1,23 @@
+name: employee-lookup
+data:
+  - id: tc-engineering-employees
+    description: Materialize employee lookup observations for upstream evaluation.
+    input: Who are the employees in the Engineering department?
+    expected_output: Alice Chen, Bob Smith, and Carol Wu work in Engineering.
+    expected_tools:
+      - name: employee_lookup
+        input_parameters:
+          department: Engineering
+
+evaluators:
+  - class_name: CompositeEvaluator
+    name: agent-quality
+    metrics:
+      - class_name: DeepEvalToolCorrectnessMetric
+        threshold: 0.5
+        should_exact_match: true
+      - class_name: GEvalCompletenessMetric
+        threshold: 0.5
+        models:
+          - model_id: openai/gpt-4o-mini
+            credentials: ${OPENAI_API_KEY}
